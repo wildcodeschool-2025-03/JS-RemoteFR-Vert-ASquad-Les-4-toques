@@ -15,4 +15,12 @@ router.post("/api/items", itemActions.add);
 
 /* ************************************************************************* */
 
+// Define recipe-related routes
+import recipeActions from "./modules/recipe/recipeActions";
+
+router.get("/api/recipes", recipeActions.browse);
+router.get("/api/recipes/:id", recipeActions.read);
+
+/* ************************************************************************* */
+
 export default router;
