@@ -24,7 +24,7 @@
 }
 
 .navbar-text {
-  font-size: 0.7rem;
+  font-size: 1rem;
   color: #d56c06;
   text-align: center;
   padding: 1.5rem;
@@ -38,7 +38,7 @@
 }
 
 .navbar-text p {
-  font-size: 0.8rem;
+  font-size: 1rem;
   line-height: 1.6;
 }
 
