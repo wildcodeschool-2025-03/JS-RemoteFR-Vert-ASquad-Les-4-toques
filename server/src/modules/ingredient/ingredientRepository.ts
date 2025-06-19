@@ -10,7 +10,7 @@ type recipeType = {
   glucides: string;
   lipides: string;
   sucre: string;
-  sels: string;
+  sel: string;
 };
 
 class IngredientRepository {
