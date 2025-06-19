@@ -1,0 +1,81 @@
+.navbar-all {
+  background-image: url("/images/image-accueil-mobile.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.navbar-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.navbar-section img {
+  width: 10vh;
+}
+
+.menu {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 2em;
+  color: #b3261e;
+}
+
+.navbar-text {
+  font-size: 0.7rem;
+  color: #d56c06;
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.navbar-text h1 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+  margin-top: -30px;
+}
+
+.navbar-text p {
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.sign-btn {
+  background-color: #97bf0d;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: bold;
+  padding: 10px 40px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.sign-banniere {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.burger-menu {
+  color: #97bf0d;
+  position: absolute;
+  top: 70px;
+  right: 10px;
+  background: white;
+  border-radius: 20px;
+  padding: 5px;
+}
+
+.burger-menu ul {
+  list-style: none;
+}
+
+.burger-menu li {
+  padding: 10px;
+  text-align: center;
+}
