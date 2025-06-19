@@ -3511,3 +3511,26 @@ ALTER TABLE db_ciqual
  ALTER TABLE db_ciqual 
  RENAME COLUMN Sel_chlorure_de_sodium_g_100_g to sel;
 
+CREATE TABLE recipe(
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(45),
+  cost INT UNSIGNED NOT NULL,
+  difficulty INT UNSIGNED NOT NULL,
+  nb_people INT UNSIGNED NOT NULL,
+qte_ingredients INT UNSIGNED NOT NULL,
+picture VARCHAR(255),
+additional_text VARCHAR(255),
+is_validated BOOLEAN NOT NULL,
+category_id INT NOT NULL,
+user_id INT NOT NULL
+);
+
+CREATE TABLE recipe_ingredient (
+    recipe_id INT,
+    ingredient_id INT,
+    PRIMARY KEY (recipe_id, ingredient_id),
+    FOREIGN KEY (recipe_id) REFERENCES recipe(id),
+    FOREIGN KEY (ingredient_id) REFERENCES db_ciqual(id)
+);
+
+INSERT INTO recipe (name, cost, difficulty, nb_people, qte_ingredients, is_validated, category_id, user_id) VALUES ("tomates sur du pain", 2, 1, 3, 3, 1, 1, 1);;
