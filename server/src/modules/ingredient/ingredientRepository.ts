@@ -15,9 +15,7 @@ type recipeType = {
 
 class IngredientRepository {
   async readAll() {
-    const [rows] = await databaseClient.query<Rows>(
-      "SELECT * FROM db_ciqual JOIN recipe_ingredient ON recipe_ingredient.ingredient_id = db_ciqual.id JOIN recipe ON recipe_ingredient.recipe_id = recipe.id",
-    );
+    const [rows] = await databaseClient.query<Rows>("SELECT * FROM db_ciqual");
     return rows as recipeType[];
   }
 

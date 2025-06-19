@@ -3,11 +3,11 @@
 
 CREATE TABLE category (
   id INT AUTO_INCREMENT PRIMARY KEY ,
-  name VARCHAR(25)
+  category_name VARCHAR(25)
 );
 
 CREATE TABLE recipe(
-id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+r_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
 name VARCHAR(45),
 cost INT UNSIGNED NOT NULL,
 difficulty INT UNSIGNED NOT NULL,
@@ -121,7 +121,7 @@ CREATE TABLE recipe_ingredient (
   recipe_id INT,
   ingredient_id INT,
   PRIMARY KEY (recipe_id, ingredient_id),
-  FOREIGN KEY (recipe_id) REFERENCES recipe(id),
+  FOREIGN KEY (recipe_id) REFERENCES recipe(r_id),
   FOREIGN KEY (ingredient_id) REFERENCES db_ciqual(id)
 );
 
@@ -134,7 +134,7 @@ CREATE TABLE step (
   description TEXT,
   image VARCHAR(255),
   recipe_id INT,
-  FOREIGN KEY (recipe_id) REFERENCES recipe(id)
+  FOREIGN KEY (recipe_id) REFERENCES recipe(r_id)
 );
 
 CREATE TABLE label (
@@ -147,7 +147,7 @@ CREATE TABLE recipe_label(
   label_id INT,
   recipe_id INT,
   PRIMARY KEY (label_id, recipe_id),
-  FOREIGN KEY (recipe_id) REFERENCES recipe(id)
+  FOREIGN KEY (recipe_id) REFERENCES recipe(r_id)
 );
 
 /** Injecting base datas ito tables */
@@ -3348,11 +3348,11 @@ INSERT INTO db_ciqual VALUES (NULL, 11, 1104, 0, 'aliments infantiles', 'céréa
 
 /** Feeding category table */
 
-INSERT INTO category (name) VALUES ("entrée");
+INSERT INTO category (category_name) VALUES ("entrée");
 
-INSERT INTO category (name) VALUES ("plat");
+INSERT INTO category (category_name) VALUES ("plat");
 
-INSERT INTO category (name) VALUES ("dessert");
+INSERT INTO category (category_name) VALUES ("dessert");
 
 
 /** Feeding label table */
@@ -3576,10 +3576,34 @@ ALTER TABLE db_ciqual
 
 
 /** essai de recettes: à supprimer avant passage en prod */
-INSERT INTO recipe (name, cost, difficulty, nb_people, qte_ingredients, is_validated) VALUES ("tomates sur du pain", 2, 1, 3, 3, 1);
+INSERT INTO recipe (name, cost, difficulty, nb_people, qte_ingredients, is_validated, category_id) VALUES ("tomates sur du pain", 1, 1, 3, 3, 1, 1);
+INSERT INTO recipe (name, cost, difficulty, nb_people, qte_ingredients, is_validated, category_id) VALUES ("crevettes au lait de coco", 2, 1, 3, 3, 1, 1);
+INSERT INTO recipe (name, cost, difficulty, nb_people, qte_ingredients, is_validated, category_id) VALUES ("courgettes à l'ail", 2, 1, 3, 3, 1, 1);
 
-INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES (1, 150);
-INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES (1, 2444);
-INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES (1, 3112);
+INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES (1, 359);
+INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES (1, 1025);
+INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES (1, 2883);
+INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES (1, 2218);
+
+
+INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES (2, 1798);
+INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES (2, 2432);
+
+INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES (3, 347);
+INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES (3, 3071);
+
+INSERT INTO recipe_label (label_id, recipe_id) VALUES (1, 1);
+
+INSERT INTO step (step_number,title,description,recipe_id) VALUES (1, "couper les tomates en tranches", "blablabla", 1);
+INSERT INTO step (step_number,title,description,recipe_id) VALUES (2, "couper le pain en tranches", "blablabla", 1);
+
+INSERT INTO step (step_number,title,description,recipe_id) VALUES (3, "couper la mozzarella en tranches", "blablabla", 1);
+INSERT INTO step (step_number,title,description,recipe_id) VALUES (4, "mettre la mozzarella sur une tranche de pain", "blablabla", 1);
+INSERT INTO step (step_number,title,description,recipe_id) VALUES (5, "mettre les tranches de tomates par dessus", "blablabla", 1);
+INSERT INTO step (step_number,title,description,recipe_id) VALUES (6, "terminer par un filet d'huile d'olive", "saler, poivrer selon convenance", 1);
+
+
+
+
 
 
