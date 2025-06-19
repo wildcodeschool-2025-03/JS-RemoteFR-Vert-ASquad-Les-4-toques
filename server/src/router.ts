@@ -23,4 +23,12 @@ router.get("/api/recipes/:id", recipeActions.read);
 
 /* ************************************************************************* */
 
+// Define ingredient-related routes
+import ingredientActions from "./modules/ingredient/ingredientActions";
+
+router.get("/api/ingredients", ingredientActions.browse);
+router.get("/api/ingredients/:id", ingredientActions.read);
+
+/* ************************************************************************* */
+
 export default router;

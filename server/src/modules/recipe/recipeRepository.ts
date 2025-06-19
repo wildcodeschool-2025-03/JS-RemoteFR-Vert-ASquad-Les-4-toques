@@ -11,29 +11,29 @@ type recipeType = {
   qte_ingredients: number;
   picture: string;
   additional_text: string;
-  val_nut: [
-    {
-      calories: number;
-      proteines: number;
-      glucides: number;
-      lipides: number;
-      fibres: number;
-    },
-  ];
   is_validated: boolean;
   category_id: number;
   user_id: number;
+  step_number: number;
+  title: string;
+  description: string;
+  image: string;
+  recipe_id: number;
+  label_id: number;
+  label: string;
 };
 
 class RecipeRepository {
   async readAll() {
-    const [rows] = await databaseClient.query<Rows>("SELECT * FROM recipe");
+    const [rows] = await databaseClient.query<Rows>(
+      "SELECT * FROM recipe JOIN category ON category.id = recipe.category_id JOIN step ON recipe.id = step.recipe_id JOIN recipe_label ON recipe.id = recipe_label.recipe_id JOIN label ON label.id =recipe_label.label_id",
+    );
     return rows as recipeType[];
   }
 
   async read(id: number) {
     const [rows] = await databaseClient.query<Rows>(
-      "SELECT * FROM recipe WHERE id=?",
+      "SELECT * FROM recipe WHERE id=? JOIN category ON category.id = recipe.category_id JOIN step ON recipe.id = step.recipe_id JOIN recipe_label ON recipe.id = recipe_label.recipe_id JOIN label ON label.id =recipe_label.label_id",
       [id],
     );
     return rows[0] as recipeType;
