@@ -1,24 +1,25 @@
-create table user (
-  id int unsigned primary key auto_increment not null,
-  email varchar(255) not null unique,
-  password varchar(255) not null
+/** Creating tables */
+
+
+CREATE TABLE category (
+  id INT AUTO_INCREMENT PRIMARY KEY ,
+  name VARCHAR(25)
 );
 
-create table item (
-  id int unsigned primary key auto_increment not null,
-  title varchar(255) not null,
-  user_id int unsigned not null,
-  foreign key(user_id) references user(id)
+CREATE TABLE recipe(
+id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+name VARCHAR(45),
+cost INT UNSIGNED NOT NULL,
+difficulty INT UNSIGNED NOT NULL,
+nb_people INT UNSIGNED NOT NULL,
+qte_ingredients INT UNSIGNED NOT NULL,
+picture VARCHAR(255),
+additional_text VARCHAR(255),
+is_validated BOOLEAN NOT NULL,
+category_id INT,
+FOREIGN KEY (category_id) REFERENCES category(id),
+user_id INT 
 );
-
-insert into user(id, email, password)
-values
-  (1, "jdoe@mail.com", "123456");
-
-insert into item(id, title, user_id)
-values
-  (1, "Stuff", 1),
-  (2, "Doodads", 1);
 
 
 /* Columns to keep in bd_ciqual table :
@@ -114,6 +115,48 @@ CREATE TABLE db_ciqual (
     Vitamine_B9_ou_Folates_totaux_µg_100_g VARCHAR(55),
     Vitamine_B12_µg_100_g VARCHAR(55)
 );
+
+
+CREATE TABLE recipe_ingredient (
+  recipe_id INT,
+  ingredient_id INT,
+  PRIMARY KEY (recipe_id, ingredient_id),
+  FOREIGN KEY (recipe_id) REFERENCES recipe(id),
+  FOREIGN KEY (ingredient_id) REFERENCES db_ciqual(id)
+);
+
+
+
+CREATE TABLE step (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  step_number INT UNSIGNED NOT NULL,
+  title VARCHAR(45),
+  description TEXT,
+  image VARCHAR(255),
+  recipe_id INT,
+  FOREIGN KEY (recipe_id) REFERENCES recipe(id)
+);
+
+CREATE TABLE label (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  label VARCHAR(45),
+  image VARCHAR(255)
+);
+
+CREATE TABLE recipe_label(
+  label_id INT,
+  recipe_id INT,
+  PRIMARY KEY (label_id, recipe_id),
+  FOREIGN KEY (recipe_id) REFERENCES recipe(id)
+);
+
+/** Injecting base datas ito tables */
+
+
+/** Base ingredients list :
+ can be updated IF NEEDED from 
+ https://www.data.gouv.fr/fr/datasets/table-de-composition-nutritionnelle-des-aliments-ciqual/community-resources/ 
+*/
 
 INSERT INTO db_ciqual VALUES (NULL, 0, 0, 0, NULL, NULL, NULL, 24999, 'Dessert (aliment moyen)', NULL, NULL, NULL, NULL, NULL, '45,4', '4,63', '4,61', '36,6', '12,9', '23,7', '1,81', NULL, '2,18', '1,89', '1,07', '15,7', '9,53', '1,54', NULL, '0,92', '0,081', '0,083', '5,18', '4,74', '1,68', '0,14', '0,19', '0,083', '0,14', '0,35', '0,55', '2,47', '0,99', '4,62', '1,32', '0,37', '0,012', '0,0041', '0,0051', '56,7', '0,38', '75', '178', '0,15', '1,45', '11', '23,8', '0,23', '107', '181', '7,04', '153', '0,5', '56,3', '34,6', '0,27', '1,97', NULL, NULL, '1,37', '0,084', '0,15', '0,61', '0,4', '0,056', '30,8', '0,21');
 INSERT INTO db_ciqual VALUES (NULL, 1, 101, 0, 'entrées et plats composés', 'salades composées et crudités', '-', 25601, 'Salade de thon et légumes, appertisée', NULL, '-', '-', '-', '-', '76,5', '9,15', '9,15', '7,74', '4,7', '3,08', '0,82', '-', '0,78', '-', '< 0,3', '0,97', '4,1', '2,7', '-', '1,79', '0', '-', '0,56', '1,83', '1,76', '< 0,05', '< 0,05', '< 0,05', '< 0,05', '< 0,05', '0,008', '0,38', '0,12', '-', '1,15', '0,056', '-', '0,008', '0,039', '19,2', '1,11', '20,7', '731', '0,1', '1,1', '2', '25,1', '0,1', '88,4', '232', '-', '445', '0,6', '< 2', '-', '< 0,5', '1,6', '-', '-', '2,75', '< 0,04', '0,053', '4,45', '< 0,16', '0,29', '31', '1,45');
@@ -3303,7 +3346,25 @@ INSERT INTO db_ciqual VALUES (NULL, 11, 1104, 0, 'aliments infantiles', 'céréa
 INSERT INTO db_ciqual VALUES (NULL, 11, 1104, 0, 'aliments infantiles', 'céréales et biscuits infantiles', '-', 42501, 'Poudre cacaotée pour bébé', NULL, '1680', '396', '1680', '396', '1,2', '8,5', '8,5', '85', '1,9', '44,5', '< 0,2', '-', '11,2', '< 0,2', '6', '27,2', '16,1', '2,2', '0', '1,18', '0', 'traces', '0,92', '0,48', '0,1', '< 0,0002', '< 0,0002', '< 0,0002', '< 0,0002', '0,0015', '0,0015', '0,37', '0,53', '0,48', '0,096', '0,0061', '< 0,0002', '< 0,0002', '< 0,0002', '1,38', '0,044', '32,2', '68,9', '0,31', '6,26', '< 20', '47,4', '0,77', '120', '326', '2,05', '17,6', '0,83', '179', '< 10', '7,93', '6,27', '< 0,8', '-', '29,5', '0,72', '0,06', '7,89', '1,12', '0,3', '117', '0,14');
 
 
-/* removing columns after initialization */
+/** Feeding category table */
+
+INSERT INTO category (name) VALUES ("entrée");
+
+INSERT INTO category (name) VALUES ("plat");
+
+INSERT INTO category (name) VALUES ("dessert");
+
+
+/** Feeding label table */
+
+INSERT INTO label (label) VALUES ("vegetarien");
+
+INSERT INTO label (label) VALUES ("vegan");
+
+INSERT INTO label (label ) VALUES ("sans gluten");
+
+
+/** removing unused columns after initialization */
 
 ALTER TABLE db_ciqual 
  DROP COLUMN alim_nom_sci;
@@ -3487,7 +3548,7 @@ ALTER TABLE db_ciqual
 
 
 
-/* renaming columns after initialization */
+/** Renaming columns after initialization */
 
 ALTER TABLE db_ciqual 
  RENAME COLUMN alim_nom_fr to nom;
@@ -3510,4 +3571,15 @@ ALTER TABLE db_ciqual
 
  ALTER TABLE db_ciqual 
  RENAME COLUMN Sel_chlorure_de_sodium_g_100_g to sel;
+
+
+
+
+/** essai de recettes: à supprimer avant passage en prod */
+INSERT INTO recipe (name, cost, difficulty, nb_people, qte_ingredients, is_validated) VALUES ("tomates sur du pain", 2, 1, 3, 3, 1);
+
+INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES (1, 150);
+INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES (1, 2444);
+INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES (1, 3112);
+
 
