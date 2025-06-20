@@ -51,13 +51,6 @@ h2 {
 }
 
 @media (min-width: 1200px) {
-  h1 {
-    font-size: 1.8rem;
-    padding-left: 2rem;
-    padding-left: 13em;
-    font-family: "Now", sans-serif;
-  }
-
   h2 {
     font-family: "Now", sans-serif;
     font-size: 1.4rem;
