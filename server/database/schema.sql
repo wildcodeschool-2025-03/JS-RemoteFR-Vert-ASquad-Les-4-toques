@@ -13,7 +13,7 @@ cost INT UNSIGNED NOT NULL,
 difficulty INT UNSIGNED NOT NULL,
 nb_people INT UNSIGNED NOT NULL,
 qte_ingredients INT UNSIGNED NOT NULL,
-picture VARCHAR(255),
+picture TEXT,
 additional_text VARCHAR(255),
 is_validated BOOLEAN NOT NULL,
 category_id INT,
@@ -3576,9 +3576,9 @@ ALTER TABLE db_ciqual
 
 
 /** essai de recettes: à supprimer avant passage en prod */
-INSERT INTO recipe (name, cost, difficulty, nb_people, qte_ingredients, is_validated, category_id) VALUES ("tomates sur du pain", 1, 1, 3, 3, 1, 1);
-INSERT INTO recipe (name, cost, difficulty, nb_people, qte_ingredients, is_validated, category_id) VALUES ("crevettes au lait de coco", 2, 1, 3, 3, 1, 1);
-INSERT INTO recipe (name, cost, difficulty, nb_people, qte_ingredients, is_validated, category_id) VALUES ("courgettes à l'ail", 2, 1, 3, 3, 1, 1);
+INSERT INTO recipe (name, picture,  cost, difficulty, nb_people, qte_ingredients, is_validated, category_id) VALUES ("tomates sur du pain","https://www.cuisineactuelle.fr/imgre/fit/~1~cac~2024~09~30~516b1838-4a01-4087-8065-c4e77263c294.jpeg/422x211/quality/70/crop-from/center/focus-point/789%2C568/bruschetta-facon-pain-perdu-la-recette-au-pesto-tomates-et-champignons-pour-ne-plus-jeter-la-baguette-de-la-veille.jpeg", 1, 1, 3, 3, 1, 1);
+INSERT INTO recipe (name, picture, cost, difficulty, nb_people, qte_ingredients, is_validated, category_id) VALUES ("crevettes au lait de coco","https://www.mgc-prevention.fr/wp-content/uploads/2010/11/crevettes_coco_2140553819.jpg", 2, 1, 3, 3, 1, 1);
+INSERT INTO recipe (name, picture, cost, difficulty, nb_people, qte_ingredients, is_validated, category_id) VALUES ("courgettes à l'ail","https://img.freepik.com/photos-premium/salade-tiede-aux-jeunes-courgettes-ail-aux-herbes_2829-8847.jpg", 2, 1, 3, 3, 1, 1);
 
 INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES (1, 359);
 INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES (1, 1025);
