@@ -1,0 +1,39 @@
+footer {
+  background-color: #ece8da;
+  padding: 20px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  font-size: 1em;
+}
+
+.footer-section {
+  text-align: end;
+}
+.contact-link {
+  text-decoration: none;
+  color: black;
+}
+
+.logos {
+  display: none;
+}
+
+@media screen and (min-width: 1200px) {
+  .footer-container {
+    padding: 0em 7em;
+  }
+
+  .logos {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .logos img {
+    width: 2vw;
+    height: 4vh;
+  }
+}
