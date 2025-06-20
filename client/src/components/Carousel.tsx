@@ -90,6 +90,7 @@ export default function Carousel() {
 
   return (
     <div className="slider-container">
+      <h1>Les recettes fraîchement ajoutées</h1>
       <Slider {...settings}>
         {images.map((image) => (
           <div key={image.id}>

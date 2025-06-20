@@ -89,6 +89,7 @@
     background-image: url("/images/accueil_desktop.jpg");
     background-size: cover;
     background-position: center;
+    width: 100%;
   }
 
   .menu {
@@ -97,18 +98,18 @@
 
   .navbar-text {
     color: #efece0;
-    margin-top: -50px;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
     font-weight: bold;
+    text-align: center;
+    margin: auto;
   }
 
   .navbar-text h1 {
-    font-size: 3em;
+    font-size: 2em;
   }
 
   .navbar-text p {
-    font-size: 1.5em;
-    margin: 0.5em 30em;
+    font-size: 1em;
   }
 
   .desktop-menu {
