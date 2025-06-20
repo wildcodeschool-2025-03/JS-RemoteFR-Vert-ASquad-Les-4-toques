@@ -13,7 +13,7 @@ cost INT UNSIGNED NOT NULL,
 difficulty INT UNSIGNED NOT NULL,
 nb_people INT UNSIGNED NOT NULL,
 qte_ingredients INT UNSIGNED NOT NULL,
-picture VARCHAR(255),
+picture TEXT,
 additional_text VARCHAR(255),
 is_validated BOOLEAN NOT NULL,
 category_id INT,
@@ -3576,10 +3576,31 @@ ALTER TABLE db_ciqual
 
 
 /** essai de recettes: à supprimer avant passage en prod */
-INSERT INTO recipe (name, cost, difficulty, nb_people, qte_ingredients, is_validated) VALUES ("tomates sur du pain", 2, 1, 3, 3, 1);
+INSERT INTO recipe (name, picture,  cost, difficulty, nb_people, qte_ingredients, is_validated, category_id) VALUES ("tomates sur du pain","https://www.cuisineactuelle.fr/imgre/fit/~1~cac~2024~09~30~516b1838-4a01-4087-8065-c4e77263c294.jpeg/422x211/quality/70/crop-from/center/focus-point/789%2C568/bruschetta-facon-pain-perdu-la-recette-au-pesto-tomates-et-champignons-pour-ne-plus-jeter-la-baguette-de-la-veille.jpeg", 1, 1, 3, 3, 1, 1);
+INSERT INTO recipe (name, picture, cost, difficulty, nb_people, qte_ingredients, is_validated, category_id) VALUES ("crevettes au lait de coco","https://www.mgc-prevention.fr/wp-content/uploads/2010/11/crevettes_coco_2140553819.jpg", 2, 1, 3, 3, 1, 1);
+INSERT INTO recipe (name, picture, cost, difficulty, nb_people, qte_ingredients, is_validated, category_id) VALUES ("courgettes à l'ail","https://img.freepik.com/photos-premium/salade-tiede-aux-jeunes-courgettes-ail-aux-herbes_2829-8847.jpg", 2, 1, 3, 3, 1, 1);
 
-INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES (1, 150);
-INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES (1, 2444);
-INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES (1, 3112);
+INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES (1, 359);
+INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES (1, 1025);
+INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES (1, 2883);
+INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES (1, 2218);
+
+
+INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES (2, 1798);
+INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES (2, 2432);
+
+INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES (3, 347);
+INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES (3, 3071);
+
+INSERT INTO recipe_label (label_id, recipe_id) VALUES (1, 1);
+
+INSERT INTO step (step_number,title,description,recipe_id) VALUES (1, "couper les tomates en tranches", "blablabla", 1);
+INSERT INTO step (step_number,title,description,recipe_id) VALUES (2, "couper le pain en tranches", "blablabla", 1);
+
+INSERT INTO step (step_number,title,description,recipe_id) VALUES (3, "couper la mozzarella en tranches", "blablabla", 1);
+INSERT INTO step (step_number,title,description,recipe_id) VALUES (4, "mettre la mozzarella sur une tranche de pain", "blablabla", 1);
+INSERT INTO step (step_number,title,description,recipe_id) VALUES (5, "mettre les tranches de tomates par dessus", "blablabla", 1);
+INSERT INTO step (step_number,title,description,recipe_id) VALUES (6, "terminer par un filet d'huile d'olive", "saler, poivrer selon convenance", 1);
+
 
 
