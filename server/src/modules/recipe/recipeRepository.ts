@@ -26,14 +26,14 @@ type recipeType = {
 class RecipeRepository {
   async readAll() {
     const [rows] = await databaseClient.query<Rows>(
-      "SELECT r_id, name, (SELECT JSON_ARRAYAGG(title) FROM step WHERE recipe.r_id = step.recipe_id) AS etapes, (SELECT JSON_ARRAYAGG(nom) FROM recipe_ingredient JOIN db_ciqual ON recipe_ingredient.ingredient_id = db_ciqual.id WHERE recipe_id = recipe.r_id) AS ing FROM recipe JOIN category ON category.id = recipe.category_id LEFT JOIN recipe_label ON recipe.r_id = recipe_label.recipe_id LEFT JOIN label ON label.id =recipe_label.label_id GROUP BY r_id",
+      "SELECT r_id,picture, name, (SELECT JSON_ARRAYAGG(title) FROM step WHERE recipe.r_id = step.recipe_id) AS etapes, (SELECT JSON_ARRAYAGG(nom) FROM recipe_ingredient JOIN db_ciqual ON recipe_ingredient.ingredient_id = db_ciqual.id WHERE recipe_id = recipe.r_id) AS ing FROM recipe JOIN category ON category.id = recipe.category_id LEFT JOIN recipe_label ON recipe.r_id = recipe_label.recipe_id LEFT JOIN label ON label.id =recipe_label.label_id GROUP BY r_id",
     );
     return rows as recipeType[];
   }
 
   async read(id: number) {
     const [rows] = await databaseClient.query<Rows>(
-      "SELECT r_id, name, (SELECT JSON_ARRAYAGG(title) FROM step WHERE recipe.r_id = step.recipe_id) AS etapes, (SELECT JSON_ARRAYAGG(nom) FROM recipe_ingredient JOIN db_ciqual ON recipe_ingredient.ingredient_id = db_ciqual.id WHERE recipe_id = recipe.r_id) AS ing FROM recipe JOIN category ON category.id = recipe.category_id LEFT JOIN recipe_label ON recipe.r_id = recipe_label.recipe_id LEFT JOIN label ON label.id =recipe_label.label_id GROUP BY r_id HAVING recipe.r_id=? ",
+      "SELECT r_id, picture, name, (SELECT JSON_ARRAYAGG(title) FROM step WHERE recipe.r_id = step.recipe_id) AS etapes, (SELECT JSON_ARRAYAGG(nom) FROM recipe_ingredient JOIN db_ciqual ON recipe_ingredient.ingredient_id = db_ciqual.id WHERE recipe_id = recipe.r_id) AS ing FROM recipe JOIN category ON category.id = recipe.category_id LEFT JOIN recipe_label ON recipe.r_id = recipe_label.recipe_id LEFT JOIN label ON label.id =recipe_label.label_id GROUP BY r_id HAVING recipe.r_id=? ",
       [id],
     );
     return rows[0] as recipeType;
