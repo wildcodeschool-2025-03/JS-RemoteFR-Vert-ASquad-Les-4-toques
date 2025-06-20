@@ -4,6 +4,14 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: "Aleo";
+  src: url(/Typo/Aleo/Aleo-Regular.ttf);
+}
+@font-face {
+  font-family: "Now";
+  src: url(/Typo/Now/Now-Regular.otf);
+}
 body {
   font-family: "Aleo", sans-serif;
   font-size: 16px;
