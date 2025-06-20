@@ -1,5 +1,5 @@
 .navbar-all {
-  background-image: url("/images/image-accueil-mobile.png");
+  background-image: url("/images/new-mobile.png");
   background-size: cover;
   background-position: center;
 }
@@ -34,7 +34,7 @@
   font-size: 1.2rem;
   font-weight: bold;
   margin-bottom: 30px;
-  margin-top: -30px;
+  margin-top: -50px;
 }
 
 .navbar-text p {
@@ -78,4 +78,50 @@
 .burger-menu li {
   padding: 10px;
   text-align: center;
+}
+
+.desktop-menu {
+  display: none;
+}
+
+@media screen and (min-width: 1200px) {
+  .navbar-all {
+    background-image: url("/images/accueil_desktop.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+
+  .menu {
+    display: none;
+  }
+
+  .navbar-text {
+    color: #efece0;
+    margin-top: -50px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+    font-weight: bold;
+  }
+
+  .navbar-text h1 {
+    font-size: 3em;
+  }
+
+  .navbar-text p {
+    font-size: 1.5em;
+    margin: 0.5em 30em;
+  }
+
+  .desktop-menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: #efece0;
+  }
+
+  .link-desktop {
+    text-decoration: none;
+    color: #d56c06;
+    font-weight: bold;
+    margin: 0 4em;
+  }
 }
