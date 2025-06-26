@@ -45,6 +45,24 @@ const Navbar = () => {
           </button>
         </div>
       </div>
+      <div>
+        <nav className="desktop-menu">
+          <ul>
+            <Link className="link-desktop" to="/">
+              Accueil
+            </Link>
+            <Link className="link-desktop" to="/">
+              Les recettes
+            </Link>
+            <Link className="link-desktop" to="/">
+              A propos
+            </Link>
+            <Link className="link-desktop" to="/">
+              Connexion
+            </Link>
+          </ul>
+        </nav>
+      </div>
     </div>
   );
 };
