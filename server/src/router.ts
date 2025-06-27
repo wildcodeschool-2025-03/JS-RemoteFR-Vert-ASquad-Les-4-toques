@@ -31,4 +31,11 @@ router.get("/api/ingredients/:id", ingredientActions.read);
 
 /* ************************************************************************* */
 
+// Define user-related routes
+import userActions from "./modules/user/userActions";
+
+router.post("/api/register", userActions.add);
+
+/* ************************************************************************* */
+
 export default router;
