@@ -62,14 +62,6 @@ CREATE TABLE week_meal (
   FOREIGN KEY (user_id) REFERENCES user(id)
 );
 
-INSERT INTO role (id, label)
-values
-  (1, "admin"),
-  (2, "visiteur"),
-   (3, "utilisateur")
-  ;
-
-
 
 
 
