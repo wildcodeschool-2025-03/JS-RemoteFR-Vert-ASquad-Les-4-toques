@@ -63,7 +63,7 @@ CREATE TABLE user (
   firstname VARCHAR(45) NOT NULL,
   lastname VARCHAR(45) NOT NULL,
   pseudo VARCHAR (45) NOT NULL,
-  email VARCHAR(45) NOT NULL UNIQUE,
+  email VARCHAR(255) NOT NULL UNIQUE,
   password VARCHAR(255) NOT NULL,
   age INT NULL,
   role_id INT,
