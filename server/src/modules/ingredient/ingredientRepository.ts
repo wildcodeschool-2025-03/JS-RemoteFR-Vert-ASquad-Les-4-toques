@@ -4,7 +4,7 @@ import type { Result, Rows } from "../../../database/client";
 
 type recipeType = {
   id: number;
-  name: string;
+  nom: string;
   calories: string;
   proteines: string;
   glucides: string;
@@ -15,13 +15,13 @@ type recipeType = {
 
 class IngredientRepository {
   async readAll() {
-    const [rows] = await databaseClient.query<Rows>("SELECT * FROM db_ciqual");
+    const [rows] = await databaseClient.query<Rows>("SELECT * FROM ingredient");
     return rows as recipeType[];
   }
 
   async read(id: number) {
     const [rows] = await databaseClient.query<Rows>(
-      "SELECT * FROM db_ciqual WHERE id=?",
+      "SELECT * FROM ingredient WHERE id=?",
       [id],
     );
     return rows[0] as recipeType;
