@@ -9,7 +9,7 @@ export const checkEmail: RequestHandler = async (req, res, next) => {
 
     if (user) {
       res.status(403).json({
-        message: "Cett adresse email est déjà utilisée",
+        message: "Cette adresse email est déjà utilisée",
       });
       return;
     }
