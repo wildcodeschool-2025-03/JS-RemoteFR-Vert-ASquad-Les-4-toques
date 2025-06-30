@@ -27,11 +27,19 @@ export const login: RequestHandler = async (req, res, next) => {
         myPayload,
         process.env.APP_SECRET as string,
         {
-          expiresIn: "1h",
+          expiresIn: "36h",
         },
       );
 
-      res.json({ token, user: userWithoutHashedPassword });
+      res.cookie( "auth_token", token, {
+        secure: false,
+        httpOnly: true,
+        maxAge: 3600000,
+    })
+    .status(200)
+    .json({
+      message: "Bienvenue sur le site !",
+    });
     } else {
       res.sendStatus(422);
     }
