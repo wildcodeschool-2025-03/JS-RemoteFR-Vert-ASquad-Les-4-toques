@@ -2,7 +2,6 @@ import "../register/register.css";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router";
-import { Slide, ToastContainer, toast } from "react-toastify";
 
 type FormType = {
   firstname: string;
@@ -25,24 +24,9 @@ export default function Register() {
   } = useForm<FormType>();
 
   const onSubmit = async (data: FormType) => {
-    console.log(data);
-
     try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/register`,
-        data,
-      );
-      toast.success(response.data.message, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-        transition: Slide,
-      });
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/register`, data);
+
       navigate("/");
     } catch (err) {
       err;
@@ -51,19 +35,6 @@ export default function Register() {
 
   return (
     <>
-      <ToastContainer
-        position="bottom-right"
-        autoClose={1500}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-        transition={Slide}
-      />
       <h2 className="titre">Création de compte</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="formulaire">
         <div>
@@ -165,7 +136,8 @@ export default function Register() {
                 message: "merci de completer ce champ",
               },
               pattern: {
-                value: /^((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gm,
+                value:
+                  /^(?!\.)(?!.*\.\.)([a-z0-9_'+\-\.]*)[a-z0-9_+-]@([a-z0-9][a-z0-9\-]*\.)+[a-z]{2,}$/i,
                 message: "le format d'email est incorrect",
               },
             })}
