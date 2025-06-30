@@ -40,9 +40,9 @@ const Navbar = () => {
           </strong>
         </p>
         <div className="sign-banniere">
-          <button type="button" className="sign-btn">
+          <Link to="/inscription" className="sign-btn">
             Inscris-toi !
-          </button>
+          </Link>
         </div>
       </div>
       <div>

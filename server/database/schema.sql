@@ -1,11 +1,11 @@
 
 CREATE TABLE category (
   id INT AUTO_INCREMENT PRIMARY KEY ,
-  category_name VARCHAR(25)
+  name VARCHAR(25)
 );
 
 CREATE TABLE recipe(
-r_id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
 name VARCHAR(45),
 cost INT UNSIGNED NOT NULL,
 difficulty INT UNSIGNED NOT NULL,
@@ -39,7 +39,6 @@ CREATE TABLE recipe_ingredient (
   PRIMARY KEY (recipe_id, ingredient_id),
   FOREIGN KEY (recipe_id) REFERENCES recipe(id),
   FOREIGN KEY (ingredient_id) REFERENCES ingredient(id)
-
 );
 
 
@@ -50,7 +49,7 @@ CREATE TABLE step (
   description TEXT,
   image VARCHAR(255),
   recipe_id INT,
-  FOREIGN KEY (recipe_id) REFERENCES recipe(r_id)
+  FOREIGN KEY (recipe_id) REFERENCES recipe(id)
 );
 
 
@@ -92,9 +91,8 @@ CREATE TABLE recipe_label(
   label_id INT,
   recipe_id INT,
   PRIMARY KEY (label_id, recipe_id),
-  FOREIGN KEY (recipe_id) REFERENCES recipe(r_id)
+  FOREIGN KEY (recipe_id) REFERENCES recipe(id)
 );
-
 
 CREATE TABLE favori (
   recipe_id INT,
@@ -102,7 +100,6 @@ CREATE TABLE favori (
   FOREIGN KEY (recipe_id) REFERENCES recipe(id),
   FOREIGN KEY (user_id) REFERENCES user(id)
 );
-
 
 CREATE TABLE week_meal (
   id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -112,8 +109,3 @@ CREATE TABLE week_meal (
   FOREIGN KEY (recipe_id) REFERENCES recipe(id),
   FOREIGN KEY (user_id) REFERENCES user(id)
 );
-
-
-
-
-
