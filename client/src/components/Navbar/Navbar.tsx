@@ -1,5 +1,6 @@
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
 import "./navbar.css";
+import { motion } from "motion/react";
 import { useState } from "react";
 
 const Navbar = () => {
@@ -8,9 +9,9 @@ const Navbar = () => {
   return (
     <div className="navbar-all">
       <header className="navbar-section">
-        <Link to="/">
+        <NavLink to="/">
           <img src="images/logo.png" alt="logo Eating NamNam" />
-        </Link>
+        </NavLink>
         <button type="button" className="menu" onClick={() => setOpen(!open)}>
           ☰
         </button>
@@ -19,7 +20,9 @@ const Navbar = () => {
       {open && (
         <nav className="burger-menu">
           <ul>
-            <li>Accueil</li>
+            <li>
+              <NavLink to="/">Accueil</NavLink>
+            </li>
             <li>Les recettes</li>
             <li>A propos</li>
             <li>Connexion</li>
@@ -40,9 +43,16 @@ const Navbar = () => {
           </strong>
         </p>
         <div className="sign-banniere">
-          <button type="button" className="sign-btn">
-            Inscris-toi !
-          </button>
+          <NavLink to={"/inscription"}>
+            <motion.button
+              type="button"
+              className="sign-btn"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Inscris-toi !
+            </motion.button>
+          </NavLink>
         </div>
       </div>
       <div>

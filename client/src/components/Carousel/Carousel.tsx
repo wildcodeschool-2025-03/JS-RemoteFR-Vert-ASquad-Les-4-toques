@@ -1,7 +1,9 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "../style/carousel.css";
+import "./carousel.css";
+import { useState } from "react";
+import type { RecipesType } from "../../types/definitions";
 
 interface ArrowProps {
   onClick?: () => void;
@@ -57,14 +59,8 @@ function PrevArrow({ onClick }: ArrowProps) {
   );
 }
 
-export default function Carousel() {
-  const images = [
-    { id: "lasagne1", src: "./images/Lasagne.jpg" },
-    { id: "lasagne2", src: "./images/Lasagne.jpg" },
-    { id: "carbonade1", src: "./images/carbonade.jpg" },
-    { id: "lasagne4", src: "./images/Lasagne.jpg" },
-    { id: "carbonade2", src: "./images/carbonade.jpg" },
-  ];
+export default function Carousel({ recipes }: { recipes: RecipesType[] }) {
+  const [displayedImgIndex, setIdisplayedImgIndex] = useState<number>(1);
 
   const settings = {
     dots: true,
@@ -72,6 +68,7 @@ export default function Carousel() {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
+    afterChange: (current: number) => setIdisplayedImgIndex(current),
     centerMode: true,
     centerPadding: "10%",
     nextArrow: <NextArrow />,
@@ -87,17 +84,39 @@ export default function Carousel() {
       },
     ],
   };
+  console.log("idx", displayedImgIndex, "/", recipes[displayedImgIndex]);
+
+  if (recipes.length === 0) {
+    return <h1>Chargement</h1>;
+  }
 
   return (
-    <div className="slider-container">
-      <h1>Les recettes fraîchement ajoutées</h1>
-      <Slider {...settings}>
-        {images.map((image) => (
-          <div key={image.id}>
-            <img src={image.src} alt={image.id} />
-          </div>
-        ))}
-      </Slider>
-    </div>
+    <>
+      <section className="desktop_displayed_img_container">
+        <img
+          className="desktop_displayed_img"
+          src={recipes[displayedImgIndex].picture}
+          alt={recipes[displayedImgIndex].name}
+        />
+        <article>
+          <h3>Nom du plat: {recipes[displayedImgIndex].name}</h3>
+          <span>Note: </span>
+          <span>Difficulté</span>
+          <span>Temps de préparation</span>
+        </article>
+      </section>
+      <div className="slider-container">
+        <h1>Les recettes fraîchement ajoutées</h1>
+        {
+          <Slider {...settings}>
+            {recipes.map((r) => (
+              <div key={r.id}>
+                <img src={r.picture} alt={r.name} />
+              </div>
+            ))}
+          </Slider>
+        }
+      </div>
+    </>
   );
 }

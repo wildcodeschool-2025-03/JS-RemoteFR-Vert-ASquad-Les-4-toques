@@ -1,11 +1,24 @@
-import "../style/home.css";
-import Carousel from "../components/Carousel";
+import "./home.css";
+
+import axios from "axios";
+import { useEffect, useState } from "react";
+import Carousel from "../../components/Carousel/Carousel.tsx";
+
+import type { RecipesType } from "../../types/definitions.ts";
 
 export default function Home() {
+  const [recipes, setRecipes] = useState<RecipesType[]>([]);
+
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_API_URL}/api/recipes`)
+      .then((response) => setRecipes(response.data))
+      .catch((err) => console.error("Erreur :", err));
+  }, []);
   return (
     <>
       <div className="carousel">
-        <Carousel />
+        <Carousel recipes={recipes} />
       </div>
       <h2>Crée ta recette en 3 étapes</h2>
       <div className="steps">
