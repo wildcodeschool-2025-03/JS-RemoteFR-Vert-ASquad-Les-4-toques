@@ -31,10 +31,24 @@ router.get("/api/ingredients/:id", ingredientActions.read);
 
 /* ************************************************************************* */
 
+import { hashPassword } from "./middlewares/argon.middleware";
 // Define user-related routes
+import {
+  checkEmail,
+  checkEmailAndStoreUserData,
+} from "./middlewares/checkEmail.middleware";
+import { login } from "./modules/auth/authActions";
 import userActions from "./modules/user/userActions";
+import validateUser from "./validation/userValidation";
 
-router.post("/api/register", userActions.add);
+router.post("/api/login", checkEmailAndStoreUserData, login);
+router.post(
+  "/api/register",
+  validateUser,
+  checkEmail,
+  hashPassword,
+  userActions.add,
+);
 
 /* ************************************************************************* */
 
