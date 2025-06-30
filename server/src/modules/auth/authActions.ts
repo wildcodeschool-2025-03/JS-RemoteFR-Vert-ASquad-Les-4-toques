@@ -31,15 +31,16 @@ export const login: RequestHandler = async (req, res, next) => {
         },
       );
 
-      res.cookie( "auth_token", token, {
-        secure: false,
-        httpOnly: true,
-        maxAge: 3600000,
-    })
-    .status(200)
-    .json({
-      message: "Bienvenue sur le site !",
-    });
+      res
+        .cookie("auth_token", token, {
+          secure: false,
+          httpOnly: true,
+          maxAge: 3600000,
+        })
+        .status(200)
+        .json({
+          message: "Bienvenue sur le site !",
+        });
     } else {
       res.sendStatus(422);
     }
