@@ -36,8 +36,9 @@ import {
   checkEmail,
   checkEmailAndStoreUserData,
 } from "./middlewares/checkEmail.middleware";
-import userActions from "./modules/user/userActions";
 import validateUser from "./validation/userValidation";
+import userActions from "./modules/user/userActions";
+
 
 router.post("/api/login", checkEmailAndStoreUserData, login);
 router.post(
