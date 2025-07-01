@@ -1,6 +1,5 @@
-import userRepository from "../modules/user/userRepository";
 import type { RequestHandler } from "express";
-
+import userRepository from "../modules/user/userRepository";
 
 export const checkEmail: RequestHandler = async (req, res, next) => {
   const { email } = req.body;
