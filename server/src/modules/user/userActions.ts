@@ -1,10 +1,11 @@
 import type { RequestHandler } from "express";
+import type { UserType } from "../../lib/definitions";
 import userRepository from "./userRepository";
 
 const edit: RequestHandler = async (req, res, next) => {
   try {
-    const newUser = {
-      id: req.body.id,
+    const updatedUser: UserType = {
+      id: Number(req.params.id),
       firstname: req.body.firstname,
       lastname: req.body.lastname,
       pseudo: req.body.pseudo,
@@ -14,15 +15,15 @@ const edit: RequestHandler = async (req, res, next) => {
       role_id: req.body.role_id,
     };
 
-    const affectedRows = await userRepository.update(newUser);
+    const affectedRows = await userRepository.update(updatedUser);
 
     if (affectedRows === 0) {
       res.sendStatus(404);
     } else {
       res.sendStatus(204);
     }
-  } catch (err) {
-    next(err);
+  } catch (error) {
+    next(error);
   }
 };
 
@@ -46,4 +47,4 @@ const add: RequestHandler = async (req, res, next) => {
     next(err);
   }
 };
-export default {edit, add };
+export default { edit, add };
