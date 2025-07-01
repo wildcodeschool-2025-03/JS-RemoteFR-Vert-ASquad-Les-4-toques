@@ -1,8 +1,7 @@
 import type { FieldPacket, ResultSetHeader } from "mysql2";
 import databaseClient from "../../../database/client";
-import type { UserType } from "../../lib/definitions";
 import type { Result, Rows } from "../../../database/client";
-
+import type { UserType } from "../../lib/definitions";
 
 class userRepository {
   async create(user: UserType) {
