@@ -161,7 +161,7 @@ export default function Register() {
                   "Le mot de passe doit contenir entre 8 et 16 caractères, incluant une majuscule, une minuscule, un chiffre et un caractère spécial",
               },
             })}
-            type="text"
+            type="password"
             name="password"
           />
           {errors?.password && <p>{errors.password.message}</p>}
@@ -176,7 +176,7 @@ export default function Register() {
                 }
               },
             })}
-            type="text"
+            type="password"
             name="confirm_password"
           />
           {errors?.confirm_password && <p>{errors.confirm_password.message}</p>}
