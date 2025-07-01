@@ -58,9 +58,7 @@ export default function Register() {
             name="firstname"
           />
         </div>
-        {errors?.firstname && (
-          <p className="text-red-500">{errors.firstname.message}</p>
-        )}
+        {errors?.firstname && <p>{errors.firstname.message}</p>}
         <div>
           <label htmlFor="lastname">Nom</label>
           <input
