@@ -65,7 +65,7 @@ CREATE TABLE user (
   pseudo VARCHAR (45) NOT NULL,
   email VARCHAR(255) NOT NULL UNIQUE,
   password VARCHAR(255) NOT NULL,
-  age INT NULL,
+  age INT NOT NULL,
   role_id INT,
   FOREIGN KEY (role_id) REFERENCES role(id)
 );

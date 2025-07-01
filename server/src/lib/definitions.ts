@@ -4,6 +4,6 @@ export type UserType = {
   pseudo: string;
   email: string;
   password: string;
-  age: number;
   role_id: number;
+  age: number;
 };
