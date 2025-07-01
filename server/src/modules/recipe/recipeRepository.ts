@@ -26,14 +26,14 @@ type recipeType = {
 class RecipeRepository {
   async readAll() {
     const [rows] = await databaseClient.query<Rows>(
-      "SELECT recipe.id, picture, recipe.name, (SELECT title FROM step WHERE recipe.id = step.recipe_id) AS etapes, (SELECT nom FROM recipe_ingredient JOIN ingredient ON recipe_ingredient.ingredient_id = ingredient.id WHERE recipe_id = recipe.id) AS ing FROM recipe JOIN category ON category.id = recipe.category_id LEFT JOIN recipe_label ON recipe.id = recipe_label.recipe_id LEFT JOIN label ON label.id =recipe_label.label_id GROUP BY recipe.id",
+      "SELECT id, name, cost, difficulty, nb_people, qte_ingredients, picture, additional_text FROM recipe",
     );
     return rows as recipeType[];
   }
 
   async read(id: number) {
     const [rows] = await databaseClient.query<Rows>(
-      "SELECT recipe.id, picture, recipe.name, (SELECT title FROM step WHERE recipe.id = step.recipe_id) AS etapes, (SELECT nom FROM recipe_ingredient JOIN ingredient ON recipe_ingredient.ingredient_id = ingredient.id WHERE recipe_id = recipe.id) AS ing FROM recipe JOIN category ON category.id = recipe.category_id LEFT JOIN recipe_label ON recipe.id = recipe_label.recipe_id LEFT JOIN label ON label.id =recipe_label.label_id GROUP BY recipe.id HAVING recipe.id=? ",
+      "SELECT id, name, cost, difficulty, nb_people, qte_ingredients, picture, additional_text FROM recipe WHERE recipe.id=? ",
       [id],
     );
     return rows[0] as recipeType;
