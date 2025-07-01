@@ -1,6 +1,6 @@
 import databaseClient from "../../../database/client";
 
-import type { Result, Rows } from "../../../database/client";
+import type { Rows } from "../../../database/client";
 
 type recipeType = {
   id: number;
@@ -11,16 +11,6 @@ type recipeType = {
   qte_ingredients: number;
   picture: string;
   additional_text: string;
-  is_validated: boolean;
-  category_id: number;
-  user_id: number;
-  step_number: number;
-  title: string;
-  description: string;
-  image: string;
-  recipe_id: number;
-  label_id: number;
-  label: string;
 };
 
 class RecipeRepository {
