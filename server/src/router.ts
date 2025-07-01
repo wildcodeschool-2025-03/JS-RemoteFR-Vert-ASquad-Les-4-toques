@@ -39,6 +39,8 @@ import {
 import userActions from "./modules/user/userActions";
 import validateUser from "./validation/userValidation";
 
+
+router.put("/api/login/:id",validateUser, hashPassword, userActions.edit)
 router.post("/api/login", checkEmailAndStoreUserData, login);
 router.post(
   "/api/register",
