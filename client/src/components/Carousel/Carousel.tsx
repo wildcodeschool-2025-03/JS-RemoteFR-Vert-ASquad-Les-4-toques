@@ -2,6 +2,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./carousel.css";
+import { motion } from "motion/react";
 import { useState } from "react";
 import type { RecipesType } from "../../types/definitions";
 
@@ -90,24 +91,29 @@ export default function Carousel({ recipes }: { recipes: RecipesType[] }) {
     return <h1>Chargement</h1>;
   }
 
+  if (displayedImgIndex === recipes.length) {
+    setIdisplayedImgIndex(0);
+  }
+
   return (
     <>
-      <section className="desktop_displayed_img_container">
-        <img
-          className="desktop_displayed_img"
-          src={recipes[displayedImgIndex].picture}
-          alt={recipes[displayedImgIndex].name}
-        />
-        <article>
-          <h3>Nom du plat: {recipes[displayedImgIndex].name}</h3>
-          <span>Note: </span>
-          <span>Difficulté</span>
-          <span>Temps de préparation</span>
-        </article>
-      </section>
-      <div className="slider-container">
-        <h1>Les recettes fraîchement ajoutées</h1>
-        {
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+        <section className="desktop_displayed_img_container">
+          <img
+            className="desktop_displayed_img"
+            src={recipes[displayedImgIndex].picture}
+            alt={recipes[displayedImgIndex].name}
+          />
+
+          <article>
+            <h3>Nom du plat: {recipes[displayedImgIndex].name}</h3>
+            <span>Note: </span>
+            <span>Difficulté</span>
+            <span>Temps de préparation</span>
+          </article>
+        </section>
+        <div className="slider-container">
+          <h1>Les recettes fraîchement ajoutées</h1>
           <Slider {...settings}>
             {recipes.map((r) => (
               <div key={r.id}>
@@ -115,8 +121,8 @@ export default function Carousel({ recipes }: { recipes: RecipesType[] }) {
               </div>
             ))}
           </Slider>
-        }
-      </div>
+        </div>
+      </motion.div>
     </>
   );
 }

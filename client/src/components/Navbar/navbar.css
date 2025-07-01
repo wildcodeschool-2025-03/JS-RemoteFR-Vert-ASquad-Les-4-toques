@@ -55,6 +55,19 @@
   box-shadow: 3px 3px 5px rgb(0, 0, 0, 0.4);
 }
 
+.search-btn {
+  background-color: hsla(30, 95%, 43%, 0.815);
+  color: white;
+  font-size: 0.8rem;
+  font-weight: bold;
+  padding: 10px 40px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-top: 20px;
+  box-shadow: 3px 3px 5px rgb(0, 0, 0, 0.4);
+}
+
 .sign-banniere {
   width: 100%;
   display: flex;

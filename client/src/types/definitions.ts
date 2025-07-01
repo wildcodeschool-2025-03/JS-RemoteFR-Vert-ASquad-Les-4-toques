@@ -9,3 +9,8 @@ export type RecipesType = {
   etapes: string[];
   ing: string[];
 };
+
+export type Account = {
+  firstname: string;
+  lastname: string;
+};

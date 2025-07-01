@@ -26,7 +26,7 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { path: "/", element: <Homepage /> },
-      { path: "/user/:id", element: <UserHomepage /> },
+      { path: "/user", element: <UserHomepage /> },
     ], // Renders the App component for the home page
   },
   // Try adding a new route! For example, "/about" with an About component
