@@ -1,6 +1,7 @@
+import type { UserType } from "../lib/definitions";
 import type { RequestHandler } from "express";
 import { type SafeParseReturnType, z } from "zod";
-import type { UserType } from "../lib/definitions";
+
 
 const validateUser: RequestHandler = (req, res, next) => {
   const { firstname, lastname, pseudo, email, password, age, role_id } =
