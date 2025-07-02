@@ -5,7 +5,7 @@ import userRepository from "./userRepository";
 const browse: RequestHandler = async (req, res) => {
   const users = await userRepository.readAll();
 
-  const usersWithoutPasswords = users.map(({password, ...rest }) => rest);
+  const usersWithoutPasswords = users.map(({ password, ...rest }) => rest);
 
   res.json(usersWithoutPasswords);
 };
@@ -16,8 +16,8 @@ const read: RequestHandler = async (req, res) => {
   const user = await userRepository.read(parsedId);
 
   if (user != null) {
-    const {password, ...userWithoutPassword } = user;
-    res.json(userWithoutPassword); 
+    const { password, ...userWithoutPassword } = user;
+    res.json(userWithoutPassword);
   } else {
     res.sendStatus(404);
   }
