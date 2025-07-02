@@ -10,7 +10,7 @@ export default function Home() {
       <h2>Crée ta recette en 3 étapes</h2>
       <div className="steps">
         <div className="step-item">
-          <img src="/images/profil.svg" alt="logo profil" />
+          <img src="/images/profile.svg" alt="logo profil" />
           <p>Inscris-toi</p>
         </div>
         <div className="step-item">
