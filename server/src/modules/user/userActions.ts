@@ -2,6 +2,27 @@ import type { RequestHandler } from "express";
 import type { UserType } from "../../lib/definitions";
 import userRepository from "./userRepository";
 
+const browse: RequestHandler = async (req, res) => {
+  const users = await userRepository.readAll();
+
+  const usersWithoutPasswords = users.map(({password, ...rest }) => rest);
+
+  res.json(usersWithoutPasswords);
+};
+
+const read: RequestHandler = async (req, res) => {
+  const parsedId = Number.parseInt(req.params.id);
+
+  const user = await userRepository.read(parsedId);
+
+  if (user != null) {
+    const {password, ...userWithoutPassword } = user;
+    res.json(userWithoutPassword); 
+  } else {
+    res.sendStatus(404);
+  }
+};
+
 const edit: RequestHandler = async (req, res, next) => {
   try {
     const updatedUser: UserType = {
@@ -47,4 +68,4 @@ const add: RequestHandler = async (req, res, next) => {
     next(err);
   }
 };
-export default { edit, add };
+export default { browse, read, edit, add };

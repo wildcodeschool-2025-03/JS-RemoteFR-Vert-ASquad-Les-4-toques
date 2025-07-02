@@ -48,7 +48,9 @@ router.post(
   hashPassword,
   userActions.add,
 );
-router.put("/api/register/:id", validateUser, hashPassword, userActions.edit);
+router.get("/api/users", userActions.browse);
+router.get("/api/users/:id", userActions.read);
+router.put("/api/users/:id", validateUser, hashPassword, userActions.edit);
 
 /* ************************************************************************* */
 
