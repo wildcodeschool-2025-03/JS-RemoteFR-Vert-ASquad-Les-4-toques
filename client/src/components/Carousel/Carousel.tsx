@@ -3,7 +3,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./carousel.css";
 import { motion } from "motion/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { RecipesType } from "../../types/definitions";
 
 interface ArrowProps {
@@ -61,7 +61,7 @@ function PrevArrow({ onClick }: ArrowProps) {
 }
 
 export default function Carousel({ recipes }: { recipes: RecipesType[] }) {
-  const [displayedImgIndex, setIdisplayedImgIndex] = useState<number>(1);
+  const [displayedImgIndex, setdisplayedImgIndex] = useState<number>(0);
 
   const settings = {
     dots: true,
@@ -69,7 +69,10 @@ export default function Carousel({ recipes }: { recipes: RecipesType[] }) {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
-    afterChange: (current: number) => setIdisplayedImgIndex(current),
+    afterChange: (current: number) => {
+      const centeredIndex = current + Math.floor(3 / 2);
+      setdisplayedImgIndex(centeredIndex);
+    },
     centerMode: true,
     centerPadding: "10%",
     nextArrow: <NextArrow />,
@@ -85,14 +88,18 @@ export default function Carousel({ recipes }: { recipes: RecipesType[] }) {
       },
     ],
   };
-  console.log("idx", displayedImgIndex, "/", recipes[displayedImgIndex]);
+
+  useEffect(() => {
+    if (displayedImgIndex >= recipes.length) {
+      setdisplayedImgIndex(0);
+    }
+  }, [displayedImgIndex, recipes.length]);
+
+  const CenteredImgIndex =
+    displayedImgIndex < recipes.length ? displayedImgIndex : 0;
 
   if (recipes.length === 0) {
     return <h1>Chargement</h1>;
-  }
-
-  if (displayedImgIndex === recipes.length) {
-    setIdisplayedImgIndex(0);
   }
 
   return (
@@ -101,12 +108,12 @@ export default function Carousel({ recipes }: { recipes: RecipesType[] }) {
         <section className="desktop_displayed_img_container">
           <img
             className="desktop_displayed_img"
-            src={recipes[displayedImgIndex].picture}
-            alt={recipes[displayedImgIndex].name}
+            src={recipes[CenteredImgIndex].picture}
+            alt={recipes[CenteredImgIndex].name}
           />
 
           <article>
-            <h3>Nom du plat: {recipes[displayedImgIndex].name}</h3>
+            <h3>Nom du plat: {recipes[CenteredImgIndex].name}</h3>
             <span>Note: </span>
             <span>Difficulté</span>
             <span>Temps de préparation</span>

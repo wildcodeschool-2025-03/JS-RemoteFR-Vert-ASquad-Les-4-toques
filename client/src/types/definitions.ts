@@ -14,3 +14,9 @@ export type Account = {
   firstname: string;
   lastname: string;
 };
+
+export type ContextType = {
+  account: Account | null;
+  isConnected: boolean;
+  authenticate: () => void;
+};

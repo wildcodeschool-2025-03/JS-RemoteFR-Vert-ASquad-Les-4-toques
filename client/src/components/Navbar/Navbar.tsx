@@ -1,19 +1,15 @@
 import { Link, NavLink } from "react-router";
 import "./navbar.css";
 import { motion } from "motion/react";
-import { useEffect, useState } from "react";
-import userAuth, { AuthStatus } from "../../Auth/userAuth";
+import { useState } from "react";
+import { useAuth } from "../../Auth/authContext";
 
 const Navbar = () => {
-  const { status, authenticate } = userAuth();
+  const { isConnected } = useAuth();
 
   const [open, setOpen] = useState(false);
-  console.log("status", status);
-  useEffect(() => {
-    authenticate();
-  }, [authenticate]);
 
-  if (status === AuthStatus.Guest) {
+  if (!isConnected) {
     return (
       <div className="navbar-all">
         <header className="navbar-section">
@@ -85,7 +81,7 @@ const Navbar = () => {
     );
   }
 
-  if (status === AuthStatus.Authenticated) {
+  if (isConnected) {
     return (
       <div className="navbar-all">
         <header className="navbar-section">
@@ -113,7 +109,7 @@ const Navbar = () => {
           <h1> Eating NAM NAM</h1>
 
           <div className="sign-banniere">
-            <NavLink to={"/inscription"}>
+            <NavLink to={"/"}>
               <motion.button
                 type="button"
                 className="search-btn"
