@@ -40,6 +40,7 @@ import userActions from "./modules/user/userActions";
 import validateUser from "./validation/userValidation";
 
 router.post("/api/login", checkEmailAndStoreUserData, login);
+
 router.post(
   "/api/register",
   validateUser,
@@ -47,6 +48,7 @@ router.post(
   hashPassword,
   userActions.add,
 );
+router.put("/api/register/:id", validateUser, hashPassword, userActions.edit);
 
 /* ************************************************************************* */
 

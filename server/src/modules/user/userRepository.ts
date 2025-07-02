@@ -39,6 +39,23 @@ class userRepository {
     );
     return rows[0] as UserType | undefined;
   }
+
+  async update(user: UserType) {
+    const [result] = await databaseClient.query<Result>(
+      "UPDATE user SET firstname = ?, lastname = ?, pseudo = ?, email = ?, password = ?, age = ?, role_id = ? WHERE id = ?",
+      [
+        user.firstname,
+        user.lastname,
+        user.pseudo,
+        user.email,
+        user.password,
+        user.age,
+        user.role_id,
+        user.id,
+      ],
+    );
+    return result.affectedRows;
+  }
 }
 
 export default new userRepository();
