@@ -1,3 +1,4 @@
+import cookieParser from "cookie-parser";
 import express from "express";
 
 const router = express.Router();
@@ -54,5 +55,11 @@ router.put("/api/users/:id", validateUser, hashPassword, userActions.edit);
 router.delete("/api/users/:id", userActions.destroy);
 
 /* ************************************************************************* */
+
+/** cokie validation route */
+import { verifyCookie } from "./middlewares/verifyCookie.middleware";
+
+const cookieCheck = cookieParser();
+router.get("/api/me", cookieCheck, verifyCookie);
 
 export default router;

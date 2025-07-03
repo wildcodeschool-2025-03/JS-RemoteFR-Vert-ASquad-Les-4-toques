@@ -64,3 +64,27 @@
     width: 100%;
   }
 }
+
+.desktop_displayed_img_container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 5em;
+  transform: translateX(25%);
+  @media screen and (max-width: 1200px) {
+    display: none;
+  }
+}
+
+.desktop_displayed_img {
+  height: 20em;
+  width: 20em;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.desktop_displayed_img_container article {
+  margin: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+}

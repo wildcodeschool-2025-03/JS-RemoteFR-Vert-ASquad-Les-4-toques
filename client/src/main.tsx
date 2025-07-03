@@ -7,8 +7,9 @@ import { RouterProvider, createBrowserRouter } from "react-router";
 
 // Import the main app component
 import App from "./App";
-import Homepage from "./pages/Homepage";
+import Homepage from "./pages/homepage/Homepage";
 import Register from "./pages/register/Register";
+import UserHomepage from "./pages/userHomepage/userHomepage";
 
 // Import additional components for new routes
 // Try creating these components in the "pages" folder
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { path: "/", element: <Homepage /> },
+      { path: "/user", element: <UserHomepage /> },
       { path: "/inscription", element: <Register /> },
     ], // Renders the App component for the home page
   },
