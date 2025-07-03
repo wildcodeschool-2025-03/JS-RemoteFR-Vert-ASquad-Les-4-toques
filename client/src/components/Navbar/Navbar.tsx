@@ -29,7 +29,9 @@ const Navbar = () => {
               </li>
               <li>Les recettes</li>
               <li>A propos</li>
-              <li>Connexion</li>
+              <li>
+                <NavLink to="/connexion">Connexion</NavLink>
+              </li>
             </ul>
           </nav>
         )}
@@ -71,7 +73,7 @@ const Navbar = () => {
               <Link className="link-desktop" to="/">
                 A propos
               </Link>
-              <Link className="link-desktop" to="/">
+              <Link className="link-desktop" to="/connexion">
                 Connexion
               </Link>
             </ul>

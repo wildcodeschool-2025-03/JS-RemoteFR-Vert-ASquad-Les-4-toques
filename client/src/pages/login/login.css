@@ -1,0 +1,141 @@
+/* Centrage complet de la page */
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center; /* centre horizontalement */
+  align-items: center;     /* centre verticalement */
+  font-family: "Now", sans-serif;
+  background-color: #f9f9f9; /* optionnel */
+}
+
+.titre {
+  color: var(--secondary, #333);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 1em 0;
+  padding: 0 1rem;
+  text-align: center;
+  font-family: "Now", sans-serif;
+}
+
+.formulaire {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0 1rem;
+  gap: 1.2rem;
+  max-width: 320px;
+  width: 100%;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.formulaire label {
+  margin-bottom: 0.4rem;
+  font-weight: 500;
+  font-family: "Now", sans-serif;
+}
+
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.input-icon {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+}
+
+.input-email,
+.input-password {
+  width: 100%;
+  padding-left: 50px;
+  height: 2.5rem;
+  border: 1px solid var(--primary, #007bff);
+  border-radius: 25px;
+  font-size: 0.7rem;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.container_btn {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+.btn {
+  background-color: var(--primary, #007bff);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover:enabled {
+  background-color: var(--primary-dark, #0056b3);
+}
+
+.btn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.para {
+  margin: 1.5rem 0;
+  text-align: center;
+  font-family: "Now", sans-serif;
+  font-size: 0.95rem;
+}
+
+.error-msg {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+  font-family: "Now", sans-serif;
+}
+
+
+
+@media (min-width: 1200px) {
+  .formulaire {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .formulaire input {
+    margin-right: rem;
+    margin-bottom: 3rem;
+  }
+}
+
+.container_btn {
+  display: flex;
+  justify-content: end;
+}
+
+.btn {
+  background-color: var(--secondary);
+  color: white;
+  font-size: 0.8rem;
+  font-weight: bold;
+  padding: 10px 40px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-right: 5rem;
+  margin-bottom: 2rem;
+}
