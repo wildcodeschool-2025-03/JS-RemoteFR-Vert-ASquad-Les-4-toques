@@ -1,10 +1,11 @@
 /* Centrage complet de la page */
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   display: flex;
   justify-content: center; /* centre horizontalement */
-  align-items: center;     /* centre verticalement */
+  align-items: center; /* centre verticalement */
   font-family: "Now", sans-serif;
   background-color: #f9f9f9; /* optionnel */
 }
@@ -108,8 +109,6 @@ html, body {
   margin-top: 0.25rem;
   font-family: "Now", sans-serif;
 }
-
-
 
 @media (min-width: 1200px) {
   .formulaire {
