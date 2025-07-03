@@ -1,15 +1,4 @@
 /* Centrage complet de la page */
-html,
-body {
-  height: 100%;
-  margin: 0;
-  display: flex;
-  justify-content: center; /* centre horizontalement */
-  align-items: center; /* centre verticalement */
-  font-family: "Now", sans-serif;
-  background-color: #f9f9f9; /* optionnel */
-}
-
 .titre {
   color: var(--secondary, #333);
   font-size: 1.2rem;
