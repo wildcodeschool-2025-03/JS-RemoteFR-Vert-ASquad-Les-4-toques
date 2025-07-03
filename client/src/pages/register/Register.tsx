@@ -7,7 +7,7 @@ type FormType = {
   firstname: string;
   lastname: string;
   pseudo: string;
-  age?: number;
+  age: string;
   email: string;
   password: string;
   confirm_password?: string;
@@ -25,9 +25,11 @@ export default function Register() {
 
   const onSubmit = async (data: FormType) => {
     try {
-      await axios.post(`${import.meta.env.VITE_API_URL}/api/register`, data);
-
-      navigate("/");
+      await axios
+        .post(`${import.meta.env.VITE_API_URL}/api/register`, data)
+        .then(() => {
+          navigate("/connexion");
+        });
     } catch (err) {
       err;
     }
@@ -37,9 +39,10 @@ export default function Register() {
     <>
       <h2 className="titre">Création de compte</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="formulaire">
-        <div>
+        <div className="input-group">
           <label htmlFor="firstname">Prénom</label>
           <input
+            className="firstname-input"
             {...register("firstname", {
               required: {
                 value: true,
@@ -56,12 +59,16 @@ export default function Register() {
             })}
             type="text"
             name="firstname"
+            placeholder="Entrez votre prénom"
           />
         </div>
-        {errors?.firstname && <p>{errors.firstname.message}</p>}
-        <div>
+        {errors?.firstname && (
+          <p className="error-msg">{errors.firstname.message}</p>
+        )}
+        <div className="input-group">
           <label htmlFor="lastname">Nom</label>
           <input
+            className="lastname-input"
             {...register("lastname", {
               required: {
                 value: true,
@@ -78,12 +85,16 @@ export default function Register() {
             })}
             type="text"
             name="lastname"
+            placeholder="Entrez votre nom"
           />
-          {errors?.lastname && <p>{errors.lastname.message}</p>}
+          {errors?.lastname && (
+            <p className="error-msg">{errors.lastname.message}</p>
+          )}
         </div>
-        <div>
+        <div className="input-group">
           <label htmlFor="pseudo">Pseudo</label>
           <input
+            className="pseudo-input"
             {...register("pseudo", {
               required: {
                 value: true,
@@ -100,12 +111,16 @@ export default function Register() {
             })}
             type="text"
             name="pseudo"
+            placeholder="Entrez votre pseudo"
           />
-          {errors?.pseudo && <p>{errors.pseudo.message}</p>}
+          {errors?.pseudo && (
+            <p className="error-msg">{errors.pseudo.message}</p>
+          )}
         </div>
-        <div>
+        <div className="input-group">
           <label htmlFor="age">Age</label>
           <input
+            className="age-input"
             {...register("age", {
               required: {
                 value: true,
@@ -120,14 +135,16 @@ export default function Register() {
                 message: "l'age maximum accepté est de 110 ans",
               },
             })}
-            type="number"
+            type="text"
             name="age"
+            placeholder="Entrez votre age"
           />
-          {errors?.age && <p>{errors.age.message}</p>}
+          {errors?.age && <p className="error-msg">{errors.age.message}</p>}
         </div>
-        <div>
+        <div className="input-group">
           <label htmlFor="email">Email</label>
           <input
+            className="email-input"
             {...register("email", {
               required: {
                 value: true,
@@ -141,12 +158,14 @@ export default function Register() {
             })}
             type="text"
             name="email"
+            placeholder="Entrez votre email"
           />
-          {errors?.email && <p>{errors.email.message}</p>}
+          {errors?.email && <p className="error-msg">{errors.email.message}</p>}
         </div>
-        <div>
+        <div className="input-group1">
           <label htmlFor="password">Mot de passe</label>
           <input
+            className="password-input"
             {...register("password", {
               required: {
                 value: true,
@@ -161,12 +180,16 @@ export default function Register() {
             })}
             type="password"
             name="password"
+            placeholder="Entrez votre mot de passe"
           />
-          {errors?.password && <p>{errors.password.message}</p>}
+          {errors?.password && (
+            <p className="error-msg">{errors.password.message}</p>
+          )}
         </div>
-        <div>
+        <div className="input-group2">
           <label htmlFor="confirm_password">Confirmation du mot de passe</label>
           <input
+            className="password-input"
             {...register("confirm_password", {
               validate: (value) => {
                 if (value !== watch("password")) {
@@ -176,8 +199,11 @@ export default function Register() {
             })}
             type="password"
             name="confirm_password"
+            placeholder="Confirmez votre password"
           />
-          {errors?.confirm_password && <p>{errors.confirm_password.message}</p>}
+          {errors?.confirm_password && (
+            <p className="error-msg">{errors.confirm_password.message}</p>
+          )}
         </div>
         <div className="container_btn">
           <button className="btn" type="submit">
