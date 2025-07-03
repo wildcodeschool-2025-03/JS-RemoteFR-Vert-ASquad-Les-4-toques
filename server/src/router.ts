@@ -56,10 +56,12 @@ router.delete("/api/users/:id", userActions.destroy);
 
 /* ************************************************************************* */
 
+import { deleteCookie } from "./middlewares/cookieAuth/deleteCookie.middleware";
 /** cokie validation route */
-import { verifyCookie } from "./middlewares/verifyCookie.middleware";
+import { verifyCookie } from "./middlewares/cookieAuth/verifyCookie.middleware";
 
 const cookieCheck = cookieParser();
 router.get("/api/me", cookieCheck, verifyCookie);
+router.post("/api/logout", cookieCheck, deleteCookie);
 
 export default router;

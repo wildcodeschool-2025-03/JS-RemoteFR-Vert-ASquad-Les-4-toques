@@ -30,8 +30,22 @@ export function AuthProvider({ children }: ChildrenType) {
     authenticate();
   }, [authenticate]);
 
+  const logout = useCallback(() => {
+    axios
+      .post(
+        `${import.meta.env.VITE_API_URL}/api/logout`,
+        {},
+        { withCredentials: true },
+      )
+      .then(() => {
+        setAccount(null);
+      });
+  }, []);
+
   return (
-    <AuthContext.Provider value={{ account, isConnected, authenticate }}>
+    <AuthContext.Provider
+      value={{ account, isConnected, authenticate, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );
