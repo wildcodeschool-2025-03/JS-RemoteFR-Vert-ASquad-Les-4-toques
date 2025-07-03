@@ -30,7 +30,6 @@ export function AuthProvider({ children }: ChildrenType) {
     authenticate();
   }, [authenticate]);
 
-  console.log("context account:", account, "connected?", isConnected);
   return (
     <AuthContext.Provider value={{ account, isConnected, authenticate }}>
       {children}
