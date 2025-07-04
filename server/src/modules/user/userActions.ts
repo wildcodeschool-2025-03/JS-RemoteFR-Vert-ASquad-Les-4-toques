@@ -58,7 +58,6 @@ const add: RequestHandler = async (req, res, next) => {
       email: req.body.email,
       password: req.body.password,
       age: req.body.age,
-      role_id: req.body.role_id,
     };
 
     const insertId: number = await userRepository.create(newUser);
