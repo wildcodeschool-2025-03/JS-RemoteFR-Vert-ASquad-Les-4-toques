@@ -1,9 +1,10 @@
+import { motion } from "motion/react";
+import { useEffect, useState } from "react";
+import { NavLink } from "react-router";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./carousel.css";
-import { motion } from "motion/react";
-import { useEffect, useState } from "react";
 import type { RecipesType } from "../../types/definitions";
 
 interface ArrowProps {
@@ -61,7 +62,7 @@ function PrevArrow({ onClick }: ArrowProps) {
 }
 
 export default function Carousel({ recipes }: { recipes: RecipesType[] }) {
-  const [displayedImgIndex, setdisplayedImgIndex] = useState<number>(0);
+  const [displayedImgIndex, setdisplayedImgIndex] = useState<number>(1);
 
   const settings = {
     dots: true,
@@ -72,6 +73,7 @@ export default function Carousel({ recipes }: { recipes: RecipesType[] }) {
     afterChange: (current: number) => {
       const centeredIndex = current + Math.floor(3 / 2);
       setdisplayedImgIndex(centeredIndex);
+      console.log(current);
     },
     centerMode: true,
     centerPadding: "10%",
@@ -90,8 +92,8 @@ export default function Carousel({ recipes }: { recipes: RecipesType[] }) {
   };
 
   useEffect(() => {
-    if (displayedImgIndex >= recipes.length) {
-      setdisplayedImgIndex(0);
+    if (displayedImgIndex > recipes.length) {
+      setdisplayedImgIndex(1);
     }
   }, [displayedImgIndex, recipes.length]);
 
@@ -113,10 +115,20 @@ export default function Carousel({ recipes }: { recipes: RecipesType[] }) {
           />
 
           <article>
-            <h3>Nom du plat: {recipes[CenteredImgIndex].name}</h3>
+            <h3>{recipes[CenteredImgIndex].name}</h3>
             <span>Note: </span>
-            <span>Difficulté</span>
-            <span>Temps de préparation</span>
+            <span>Difficulté: </span>
+            <span>Temps de préparation: </span>
+            <NavLink to={"/"}>
+              <motion.button
+                type="button"
+                className="sign-btn"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Envie d'essayer ?
+              </motion.button>
+            </NavLink>
           </article>
         </section>
         <div className="slider-container">

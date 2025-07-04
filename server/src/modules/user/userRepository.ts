@@ -9,7 +9,7 @@ class userRepository {
 
     const [result]: [ResultSetHeader, FieldPacket[]] =
       await databaseClient.query<Result>(
-        "INSERT INTO user (firstname, lastname, pseudo, email, password, age, role_id ) VALUES (?, ?, ?, ?, ?, ?, ?)",
+        "INSERT INTO user (firstname, lastname, pseudo, email, password, age) VALUES (?, ?, ?, ?, ?, ?)",
         [
           user.firstname,
           user.lastname,
@@ -17,7 +17,6 @@ class userRepository {
           user.email,
           user.password,
           user.age,
-          user.role_id,
         ],
       );
 
