@@ -21,6 +21,7 @@ import recipeActions from "./modules/recipe/recipeActions";
 
 router.get("/api/recipes", recipeActions.browse);
 router.get("/api/recipes/:id", recipeActions.read);
+router.get("/api/latestrecipes", recipeActions.readByLatest);
 router.put("/api/admin/recipes/:id", recipeActions.editAdmin);
 router.delete("/api/recipes/:id", recipeActions.destroy);
 
@@ -61,11 +62,13 @@ router.delete("/api/users/:id", userActions.destroy);
 
 /* ************************************************************************* */
 
+import { deleteCookie } from "./middlewares/cookieAuth/deleteCookie.middleware";
 /** cokie validation route */
-import { verifyCookie } from "./middlewares/verifyCookie.middleware";
+import { verifyCookie } from "./middlewares/cookieAuth/verifyCookie.middleware";
 
 const cookieCheck = cookieParser();
 router.get("/api/me", cookieCheck, verifyCookie);
+router.post("/api/logout", cookieCheck, deleteCookie);
 
 // Define admin-related routes
 import adminActions from "./modules/admin/adminActions";

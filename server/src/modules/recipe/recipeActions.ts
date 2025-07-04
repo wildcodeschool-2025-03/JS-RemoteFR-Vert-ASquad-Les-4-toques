@@ -26,6 +26,15 @@ const read: RequestHandler = async (req, res, next) => {
   }
 };
 
+const readByLatest: RequestHandler = async (req, res, next) => {
+  try {
+    const latestRecipes = await RecipeRepository.readByRecentlyAdded();
+    res.json(latestRecipes);
+  } catch (err) {
+    next(err);
+  }
+};
+
 const editAdmin: RequestHandler = async (req, res, next) => {
   try {
     const updatedRecipeAdmin: AdminUpdateRecipe = {
@@ -58,4 +67,4 @@ const destroy: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, read, editAdmin, destroy };
+export default { browse, read, editAdmin, readByLatest, destroy };

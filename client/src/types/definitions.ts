@@ -19,4 +19,5 @@ export type ContextType = {
   account: Account | null;
   isConnected: boolean;
   authenticate: () => void;
+  logout: () => void;
 };
