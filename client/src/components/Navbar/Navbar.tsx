@@ -5,8 +5,7 @@ import { useState } from "react";
 import { useAuth } from "../../Auth/authContext";
 
 const Navbar = () => {
-  const { isConnected } = useAuth();
-
+  const { isConnected, logout } = useAuth();
   const [open, setOpen] = useState(false);
 
   if (!isConnected) {
@@ -103,7 +102,11 @@ const Navbar = () => {
               </li>
               <li>Les recettes</li>
               <li>A propos</li>
-              <li>Déconnexion</li>
+              <li>
+                <button type="button" onClick={() => logout()}>
+                  Déconnexion
+                </button>
+              </li>
             </ul>
           </nav>
         )}
@@ -135,7 +138,7 @@ const Navbar = () => {
               <Link className="link-desktop" to="/">
                 A propos
               </Link>
-              <Link className="link-desktop" to="/">
+              <Link className="link-desktop" to="/" onClick={logout}>
                 Déconnexion
               </Link>
             </ul>
