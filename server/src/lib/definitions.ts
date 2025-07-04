@@ -6,5 +6,5 @@ export type UserType = {
   email: string;
   password: string;
   role_id?: number;
-  age: string;
+  age: number;
 };

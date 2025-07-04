@@ -1,5 +1,6 @@
 import "../register/register.css";
 import axios from "axios";
+import { motion } from "motion/react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router";
 
@@ -7,7 +8,7 @@ type FormType = {
   firstname: string;
   lastname: string;
   pseudo: string;
-  age: string;
+  age: number;
   email: string;
   password: string;
   confirm_password?: string;
@@ -61,10 +62,10 @@ export default function Register() {
             name="firstname"
             placeholder="Entrez votre prénom"
           />
+          {errors?.firstname && (
+            <p className="error-msg">{errors.firstname.message}</p>
+          )}
         </div>
-        {errors?.firstname && (
-          <p className="error-msg">{errors.firstname.message}</p>
-        )}
         <div className="input-group">
           <label htmlFor="lastname">Nom</label>
           <input
@@ -134,8 +135,9 @@ export default function Register() {
                 value: 110,
                 message: "l'age maximum accepté est de 110 ans",
               },
+              valueAsNumber: true,
             })}
-            type="text"
+            type="number"
             name="age"
             placeholder="Entrez votre age"
           />
@@ -191,6 +193,10 @@ export default function Register() {
           <input
             className="password-input"
             {...register("confirm_password", {
+              required: {
+                value: true,
+                message: "merci de completer ce champ",
+              },
               validate: (value) => {
                 if (value !== watch("password")) {
                   return "les mots de passe ne sont pas identiques";
@@ -199,16 +205,21 @@ export default function Register() {
             })}
             type="password"
             name="confirm_password"
-            placeholder="Confirmez votre password"
+            placeholder="Confirmez votre mot de passe"
           />
           {errors?.confirm_password && (
             <p className="error-msg">{errors.confirm_password.message}</p>
           )}
         </div>
         <div className="container_btn">
-          <button className="btn" type="submit">
+          <motion.button
+            type="submit"
+            className="btn"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
             S'inscrire
-          </button>
+          </motion.button>
         </div>
       </form>
       <p className="para">

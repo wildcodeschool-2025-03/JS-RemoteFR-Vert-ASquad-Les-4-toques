@@ -34,7 +34,7 @@
 .formulaire input {
   border: 1px solid var(--primary);
   border-radius: 25px;
-  width: 13rem;
+  width: 15rem;
   height: 2rem;
 }
 
@@ -87,7 +87,6 @@
   color: red;
   font-size: 0.85rem;
   margin-top: 0.25rem;
-  font-family: "Now", sans-serif;
 }
 
 @media (min-width: 1200px) {
