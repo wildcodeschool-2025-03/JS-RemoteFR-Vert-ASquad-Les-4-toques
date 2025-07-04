@@ -1,11 +1,9 @@
 .titre {
-  color: var(--secondary, #333);
   font-size: 1.2rem;
   font-weight: 600;
   margin: 1em 0;
   padding: 0 1rem;
   text-align: center;
-  font-family: "Now", sans-serif;
 }
 
 .formulaire {
@@ -27,7 +25,6 @@
 .formulaire label {
   margin-bottom: 0.4rem;
   font-weight: 500;
-  font-family: "Now", sans-serif;
 }
 
 .input-wrapper {
@@ -60,7 +57,7 @@
   display: flex;
   justify-content: flex-end;
   width: 100%;
-  margin-top: 1.5rem;
+  margin-top: 0;
 }
 
 .btn {
@@ -69,17 +66,11 @@
   padding: 0.5rem 1.5rem;
   font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.btn:hover:enabled {
-  background-color: var(--primary-dark, #0056b3);
 }
 
 .para {
   margin: 1.5rem 0;
   text-align: center;
-  font-family: "Now", sans-serif;
   font-size: 0.95rem;
 }
 
@@ -87,7 +78,6 @@
   color: red;
   font-size: 0.85rem;
   margin-top: 0.25rem;
-  font-family: "Now", sans-serif;
 }
 
 @media (min-width: 1200px) {
