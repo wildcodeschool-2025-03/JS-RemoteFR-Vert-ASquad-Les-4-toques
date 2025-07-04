@@ -25,4 +25,13 @@ const read: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, read };
+const readByLatest: RequestHandler = async (req, res, next) => {
+  try {
+    const latestRecipes = await RecipeRepository.readByRecentlyAdded();
+    res.json(latestRecipes);
+  } catch (err) {
+    next(err);
+  }
+};
+
+export default { browse, read, readByLatest };

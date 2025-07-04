@@ -28,6 +28,13 @@ class RecipeRepository {
     );
     return rows[0] as recipeType;
   }
+
+  async readByRecentlyAdded() {
+    const [rows] = await databaseClient.query<Rows>(
+      "SELECT id, name, cost, difficulty, nb_people, qte_ingredients, picture, additional_text FROM recipe ORDER BY id DESC LIMIT 5",
+    );
+    return rows as recipeType[];
+  }
 }
 
 export default new RecipeRepository();
