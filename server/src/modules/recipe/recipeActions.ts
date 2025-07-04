@@ -1,4 +1,5 @@
 import type { RequestHandler } from "express";
+import type { AdminUpdateRecipe } from "../../lib/definitions";
 import RecipeRepository from "./recipeRepository";
 
 const browse: RequestHandler = async (req, res, next) => {
@@ -34,4 +35,36 @@ const readByLatest: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, read, readByLatest };
+const editAdmin: RequestHandler = async (req, res, next) => {
+  try {
+    const updatedRecipeAdmin: AdminUpdateRecipe = {
+      id: Number(req.params.id),
+      name: req.body.name,
+      is_validated: req.body.is_validated,
+    };
+
+    const affectedRows = await RecipeRepository.updateAdmin(updatedRecipeAdmin);
+
+    if (affectedRows === 0) {
+      res.sendStatus(404);
+    } else {
+      res.sendStatus(204);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
+const destroy: RequestHandler = async (req, res, next) => {
+  try {
+    const recipeId = Number(req.params.id);
+
+    await RecipeRepository.delete(recipeId);
+
+    res.sendStatus(204);
+  } catch (err) {
+    next(err);
+  }
+};
+
+export default { browse, read, editAdmin, readByLatest, destroy };
