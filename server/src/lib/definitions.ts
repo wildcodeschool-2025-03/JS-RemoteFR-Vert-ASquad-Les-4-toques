@@ -29,4 +29,3 @@ export type AdminUpdateIngredient = {
   calories: number;
   is_validated: boolean;
 };
-

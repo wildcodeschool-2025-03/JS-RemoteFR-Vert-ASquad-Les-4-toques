@@ -67,13 +67,11 @@ import { verifyCookie } from "./middlewares/verifyCookie.middleware";
 const cookieCheck = cookieParser();
 router.get("/api/me", cookieCheck, verifyCookie);
 
-
 // Define admin-related routes
 import adminActions from "./modules/admin/adminActions";
 
 router.get("/api/admin", adminActions.browse);
 
 /* ************************************************************************* */
-
 
 export default router;

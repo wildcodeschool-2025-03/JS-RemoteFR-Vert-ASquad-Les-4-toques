@@ -1,7 +1,7 @@
 import type { RequestHandler } from "express";
-import userRepository from "../user/userRepository";
-import recipeRepository from "../recipe/recipeRepository";
 import ingredientRepository from "../ingredient/ingredientRepository";
+import recipeRepository from "../recipe/recipeRepository";
+import userRepository from "../user/userRepository";
 
 const browse: RequestHandler = async (req, res, next) => {
   try {

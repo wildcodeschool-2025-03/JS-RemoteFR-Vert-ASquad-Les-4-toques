@@ -1,6 +1,6 @@
 import type { RequestHandler } from "express";
+import type { AdminUpdateRecipe } from "../../lib/definitions";
 import RecipeRepository from "./recipeRepository";
-import { AdminUpdateRecipe } from "../../lib/definitions";
 
 const browse: RequestHandler = async (req, res, next) => {
   try {
@@ -25,7 +25,6 @@ const read: RequestHandler = async (req, res, next) => {
     next(err);
   }
 };
-
 
 const editAdmin: RequestHandler = async (req, res, next) => {
   try {

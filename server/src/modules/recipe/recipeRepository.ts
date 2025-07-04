@@ -1,7 +1,7 @@
 import databaseClient from "../../../database/client";
 
-import type { Result,Rows } from "../../../database/client";
-import { AdminUpdateRecipe } from "../../lib/definitions";
+import type { Result, Rows } from "../../../database/client";
+import type { AdminUpdateRecipe } from "../../lib/definitions";
 
 type recipeType = {
   id: number;
@@ -35,19 +35,12 @@ class RecipeRepository {
   async updateAdmin(recipe: AdminUpdateRecipe) {
     const [result] = await databaseClient.query<Result>(
       "UPDATE recipe SET name = ?, is_validated = ? WHERE id = ?",
-      [
-        recipe.name,
-        recipe.is_validated,
-        recipe.id,
-        
-      ],
+      [recipe.name, recipe.is_validated, recipe.id],
     );
     return result.affectedRows;
   }
 
-  
-
-   async delete(id: number) {
+  async delete(id: number) {
     const [result] = await databaseClient.query<Result>(
       "DELETE FROM recipe WHERE id = ?",
       [id],

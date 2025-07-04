@@ -1,6 +1,6 @@
 import type { RequestHandler } from "express";
+import type { AdminUpdateIngredient } from "../../lib/definitions";
 import IngredientRepository from "./ingredientRepository";
-import { AdminUpdateIngredient } from "../../lib/definitions";
 
 const browse: RequestHandler = async (req, res, next) => {
   try {
@@ -35,7 +35,9 @@ const editAdmin: RequestHandler = async (req, res, next) => {
       is_validated: req.body.is_validated,
     };
 
-    const affectedRows = await IngredientRepository.updateAdmin(updatedIngredientAdmin);
+    const affectedRows = await IngredientRepository.updateAdmin(
+      updatedIngredientAdmin,
+    );
 
     if (affectedRows === 0) {
       res.sendStatus(404);
@@ -59,4 +61,4 @@ const destroy: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, read, editAdmin, destroy};
+export default { browse, read, editAdmin, destroy };

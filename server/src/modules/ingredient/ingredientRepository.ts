@@ -1,5 +1,5 @@
 import databaseClient from "../../../database/client";
-import { AdminUpdateIngredient } from "../../lib/definitions";
+import type { AdminUpdateIngredient } from "../../lib/definitions";
 
 import type { Result, Rows } from "../../../database/client";
 
@@ -29,8 +29,7 @@ class IngredientRepository {
     return rows[0] as recipeType;
   }
 
-
-    async updateAdmin(ingredient: AdminUpdateIngredient) {
+  async updateAdmin(ingredient: AdminUpdateIngredient) {
     const [result] = await databaseClient.query<Result>(
       "UPDATE ingredient SET nom = ?, calories = ?, is_validated = ? WHERE id = ?",
       [
@@ -38,12 +37,10 @@ class IngredientRepository {
         ingredient.calories,
         ingredient.is_validated,
         ingredient.id,
-        
       ],
     );
     return result.affectedRows;
   }
-
 
   async delete(id: number) {
     const [result] = await databaseClient.query<Result>(

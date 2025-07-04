@@ -66,22 +66,15 @@ class userRepository {
         user.role_id,
         user.is_validated,
         user.id,
-        
       ],
     );
     return result.affectedRows;
   }
 
-    async updateAdmin(user: AdminUpdateUser) {
+  async updateAdmin(user: AdminUpdateUser) {
     const [result] = await databaseClient.query<Result>(
       "UPDATE user SET pseudo = ?, role_id = ?, is_validated = ? WHERE id = ?",
-      [
-        user.pseudo,
-        user.role_id,
-        user.is_validated,
-        user.id,
-        
-      ],
+      [user.pseudo, user.role_id, user.is_validated, user.id],
     );
     return result.affectedRows;
   }
