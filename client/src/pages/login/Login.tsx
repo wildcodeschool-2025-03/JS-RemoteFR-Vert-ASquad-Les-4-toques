@@ -1,10 +1,10 @@
 import "../login/login.css";
 import axios from "axios";
+import { motion } from "motion/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router";
 import { useAuth } from "../../Auth/authContext";
-import { motion } from "motion/react";
 
 type FormType = {
   email: string;
