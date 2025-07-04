@@ -9,6 +9,7 @@ import { RouterProvider, createBrowserRouter } from "react-router";
 import App from "./App";
 import Admin from "./pages/Admin";
 import Homepage from "./pages/homepage/Homepage";
+import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import UserHomepage from "./pages/userHomepage/userHomepage";
 
@@ -31,6 +32,7 @@ const router = createBrowserRouter([
       { path: "/user", element: <UserHomepage /> },
       { path: "/inscription", element: <Register /> },
       { path: "/admin", element: <Admin /> },
+      { path: "/connexion", element: <Login /> },
     ], // Renders the App component for the home page
   },
   // Try adding a new route! For example, "/about" with an About component
