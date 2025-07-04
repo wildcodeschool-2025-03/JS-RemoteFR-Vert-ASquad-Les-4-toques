@@ -46,7 +46,11 @@ export default function Login() {
     <>
       <div className="container">
         <h2 className="titre">Connexion</h2>
-        <form onSubmit={handleSubmit(onSubmit)} className="formulaire" noValidate>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="formulaire"
+          noValidate
+        >
           <div className="input-group">
             <label htmlFor="email">Email</label>
             <div className="input-wrapper">
@@ -70,7 +74,9 @@ export default function Login() {
                 className="input-icon"
               />
             </div>
-            {errors.email && <p className="error-msg">{errors.email.message}</p>}
+            {errors.email && (
+              <p className="error-msg">{errors.email.message}</p>
+            )}
           </div>
 
           <div className="input-group">
