@@ -112,27 +112,4 @@ CREATE TABLE week_meal (
   FOREIGN KEY (user_id) REFERENCES user(id)
 );
 
-INSERT INTO role (id, label) VALUES (1, "administrateur"), (2, "visiteur"), (3, "utilisateur");
-
-INSERT INTO category (name) VALUES ("Plats"), ("Desserts");
-
-INSERT INTO recipe (
-  name, cost, difficulty, nb_people, qte_ingredients,
-  picture, additional_text, is_validated, category_id, user_id
-) VALUES (
-  "Lasagne", 12, 3, 4, 7,
-  "lasagne.jpg", "À cuire 40min", false, 1, 1
-);
-
-INSERT INTO ingredient (
-  nom, calories, proteines, glucides, lipides, sucre, sel, is_validated
-) VALUES (
-  "Tomate", "18", "0.9", "3.9", "0.2", "2.6", "0.01", false
-);
-
-INSERT INTO user (
-  firstname, lastname, pseudo, email, password, age, role_id, is_validated
-) VALUES (
-  "Jeanne", "Pionne", "jeanneP", "jeanne@example.com", "hashed_pass5", 30, 1, false
-);
 
