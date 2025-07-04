@@ -3,8 +3,16 @@ import { type SafeParseReturnType, z } from "zod";
 import type { UserType } from "../lib/definitions";
 
 const validateUser: RequestHandler = (req, res, next) => {
-  const { firstname, lastname, pseudo, email, password, age, role_id } =
-    req.body;
+  const {
+    firstname,
+    lastname,
+    pseudo,
+    email,
+    password,
+    age,
+    role_id,
+    is_validated,
+  } = req.body;
 
   const userSchema = z.object({
     firstname: z.string().min(2).max(45),
@@ -24,6 +32,7 @@ const validateUser: RequestHandler = (req, res, next) => {
       ),
     age: z.number(),
     role_id: z.number().int().positive(),
+    is_validated: z.boolean(),
   });
 
   const validData: SafeParseReturnType<unknown, UserType> =
@@ -35,6 +44,7 @@ const validateUser: RequestHandler = (req, res, next) => {
       password,
       age,
       role_id,
+      is_validated,
     });
 
   if (!validData.success) {
