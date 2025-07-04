@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router";
 import { useAuth } from "../../Auth/authContext";
+import { motion } from "motion/react";
 
 type FormType = {
   email: string;
@@ -102,9 +103,15 @@ export default function Login() {
         </div>
 
         <div className="container_btn">
-          <button className="btn" type="submit" disabled={loading}>
+          <motion.button
+            type="submit"
+            className="sign-btn"
+            disabled={loading}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
             {loading ? "Connexion en cours..." : "Se connecter"}
-          </button>
+          </motion.button>
         </div>
       </form>
 
