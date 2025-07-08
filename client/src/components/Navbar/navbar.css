@@ -93,16 +93,14 @@
   font-family: Aleo, sans-serif;
 }
 
+.burger-menu a {
+  text-decoration: none;
+  color: var(--secondary);
+}
 
-.burger-menu a{
-   text-decoration: none;
-   color: var(--secondary);
-} 
-
-
-.burger-menu ul{
-   list-style: none;
-} 
+.burger-menu ul {
+  list-style: none;
+}
 
 .burger-menu li {
   padding: 10px;
@@ -113,14 +111,13 @@
   display: none;
 }
 
-.navbar-all-compact{
+.navbar-all-compact {
   background-image: url("/images/new-mobile.png");
   background-size: center;
   min-height: 110px;
   width: 100%;
   position: relative;
   z-index: 5;
-
 }
 .navbar-all-compact .navbar-text {
   display: none;
@@ -128,14 +125,12 @@
 
 .navbar-all-compact .menu {
   background-color: white;
-  border: 2px solid var(--secondary); 
+  border: 2px solid var(--secondary);
   border-radius: 50%;
   width: 40px;
-  height: 40px; 
+  height: 40px;
   font-size: 1.5rem;
 }
-
-
 
 @media screen and (min-width: 1200px) {
   .navbar-all {
@@ -179,13 +174,13 @@
     margin: 0 4em;
   }
 
-  .navbar-all-compact{
-  background-image: url("/images/accueil_desktop.jpg");
-   background-size: cover;
+  .navbar-all-compact {
+    background-image: url("/images/accueil_desktop.jpg");
+    background-size: cover;
     background-position-y: 10rem;
     width: 100%;
-}
-.navbar-all-compact .navbar-text {
-  display: none;
-}
+  }
+  .navbar-all-compact .navbar-text {
+    display: none;
+  }
 }
