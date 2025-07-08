@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useLocation } from "react-router";
 import "./navbar.css";
 import { motion } from "motion/react";
 import { useState } from "react";
@@ -7,10 +7,16 @@ import { useAuth } from "../../Auth/authContext";
 const Navbar = () => {
   const { isConnected, logout } = useAuth();
   const [open, setOpen] = useState(false);
+  const location = useLocation();
+  const homePage = location.pathname === "/";
 
+  const navbarChange = homePage? "navbar-all" : "navbar-all-compact";
+  
+  
+  
   if (!isConnected) {
     return (
-      <div className="navbar-all">
+      <div className={navbarChange}>
         <header className="navbar-section">
           <NavLink to="/">
             <img src="images/logo.png" alt="logo Eating NamNam" />
@@ -21,10 +27,10 @@ const Navbar = () => {
         </header>
 
         {open && (
-          <nav className="burger-menu">
+          <nav className="burger-menu" onMouseLeave={() => setOpen(false)}>
             <ul>
               <li>
-                <NavLink to="/">Accueil</NavLink>
+                <NavLink  to="/">Accueil</NavLink>
               </li>
               <li>Les recettes</li>
               <li>A propos</li>
@@ -84,7 +90,7 @@ const Navbar = () => {
 
   if (isConnected) {
     return (
-      <div className="navbar-all">
+      <div className={navbarChange}>
         <header className="navbar-section">
           <NavLink to="/">
             <img src="images/logo.png" alt="logo Eating NamNam" />
@@ -95,7 +101,7 @@ const Navbar = () => {
         </header>
 
         {open && (
-          <nav className="burger-menu">
+          <nav className="burger-menu" onMouseLeave={() => setOpen(false)}>
             <ul>
               <li>
                 <NavLink to="/">Accueil</NavLink>
@@ -103,7 +109,7 @@ const Navbar = () => {
               <li>Les recettes</li>
               <li>A propos</li>
               <li>
-                <button type="button" onClick={() => logout()}>
+                <button className="burger-logout" type="button" onClick={() => logout()}>
                   Déconnexion
                 </button>
               </li>
