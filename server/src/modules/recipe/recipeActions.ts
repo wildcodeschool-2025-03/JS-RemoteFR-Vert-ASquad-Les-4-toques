@@ -11,6 +11,33 @@ const browse: RequestHandler = async (req, res, next) => {
   }
 };
 
+const browseStarters: RequestHandler = async (req, res, next) => {
+  try {
+    const starters = await RecipeRepository.readStarters();
+    res.json(starters);
+  } catch (err) {
+    next(err);
+  }
+};
+
+const browseMainCourses: RequestHandler = async (req, res, next) => {
+  try {
+    const mainCourses = await RecipeRepository.readMainCourses();
+    res.json(mainCourses);
+  } catch (err) {
+    next(err);
+  }
+};
+
+const browseDesserts: RequestHandler = async (req, res, next) => {
+  try {
+    const desserts = await RecipeRepository.readDesserts();
+    res.json(desserts);
+  } catch (err) {
+    next(err);
+  }
+};
+
 const read: RequestHandler = async (req, res, next) => {
   try {
     const recipeId = Number(req.params.id);
@@ -67,4 +94,13 @@ const destroy: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, read, editAdmin, readByLatest, destroy };
+export default {
+  browse,
+  browseStarters,
+  browseMainCourses,
+  browseDesserts,
+  read,
+  editAdmin,
+  readByLatest,
+  destroy,
+};

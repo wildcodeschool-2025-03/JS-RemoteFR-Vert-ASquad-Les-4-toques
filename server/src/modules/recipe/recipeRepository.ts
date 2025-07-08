@@ -24,6 +24,27 @@ class RecipeRepository {
     return rows as recipeType[];
   }
 
+  async readStarters() {
+    const [rows] = await databaseClient.query<Rows>(
+      "SELECT id, name, cost, difficulty, nb_people, qte_ingredients, picture, additional_text, is_validated, user_id FROM recipe WHERE category_id=1",
+    );
+    return rows as recipeType[];
+  }
+
+  async readMainCourses() {
+    const [rows] = await databaseClient.query<Rows>(
+      "SELECT id, name, cost, difficulty, nb_people, qte_ingredients, picture, additional_text, is_validated, user_id FROM recipe WHERE category_id=2",
+    );
+    return rows as recipeType[];
+  }
+
+  async readDesserts() {
+    const [rows] = await databaseClient.query<Rows>(
+      "SELECT id, name, cost, difficulty, nb_people, qte_ingredients, picture, additional_text, is_validated, user_id FROM recipe WHERE category_id=3",
+    );
+    return rows as recipeType[];
+  }
+
   async read(id: number) {
     const [rows] = await databaseClient.query<Rows>(
       "SELECT id, name, cost, difficulty, nb_people, qte_ingredients, picture, additional_text, is_validated FROM recipe WHERE recipe.id=? ",

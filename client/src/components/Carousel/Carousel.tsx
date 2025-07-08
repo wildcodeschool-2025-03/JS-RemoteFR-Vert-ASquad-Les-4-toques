@@ -61,7 +61,10 @@ function PrevArrow({ onClick }: ArrowProps) {
   );
 }
 
-export default function Carousel({ recipes }: { recipes: RecipesType[] }) {
+export default function Carousel({
+  recipes,
+  showMainImage = true,
+}: { recipes: RecipesType[]; showMainImage?: boolean }) {
   const [displayedImgIndex, setdisplayedImgIndex] = useState<number>(1);
 
   const settings = {
@@ -107,32 +110,33 @@ export default function Carousel({ recipes }: { recipes: RecipesType[] }) {
   return (
     <>
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-        <section className="desktop_displayed_img_container">
-          <img
-            className="desktop_displayed_img"
-            src={recipes[CenteredImgIndex].picture}
-            alt={recipes[CenteredImgIndex].name}
-          />
+        {showMainImage && (
+          <section className="desktop_displayed_img_container">
+            <img
+              className="desktop_displayed_img"
+              src={recipes[CenteredImgIndex].picture}
+              alt={recipes[CenteredImgIndex].name}
+            />
 
-          <article>
-            <h3>{recipes[CenteredImgIndex].name}</h3>
-            <span>Note: </span>
-            <span>Difficulté: </span>
-            <span>Temps de préparation: </span>
-            <NavLink to={"/"}>
-              <motion.button
-                type="button"
-                className="sign-btn"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Envie d'essayer ?
-              </motion.button>
-            </NavLink>
-          </article>
-        </section>
+            <article>
+              <h3>{recipes[CenteredImgIndex].name}</h3>
+              <span>Note: </span>
+              <span>Difficulté: </span>
+              <span>Temps de préparation: </span>
+              <NavLink to={"/"}>
+                <motion.button
+                  type="button"
+                  className="sign-btn"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Envie d'essayer ?
+                </motion.button>
+              </NavLink>
+            </article>
+          </section>
+        )}
         <div className="slider-container">
-          <h1>Les recettes fraîchement ajoutées</h1>
           <Slider {...settings}>
             {recipes.map((r) => (
               <div key={r.id}>

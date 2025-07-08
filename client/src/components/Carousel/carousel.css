@@ -1,5 +1,5 @@
 .slider-container {
-  width: 50%;
+  width: 70%;
   margin: 20px auto;
   background-color: transparent;
   box-sizing: border-box;
@@ -57,11 +57,6 @@
     max-width: 100%;
     width: 95%;
     padding: 0 10px;
-  }
-
-  .slider-container img {
-    height: 150%;
-    width: 100%;
   }
 }
 
