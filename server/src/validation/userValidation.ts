@@ -3,14 +3,7 @@ import { type SafeParseReturnType, z } from "zod";
 import type { UserType } from "../lib/definitions";
 
 const validateUser: RequestHandler = (req, res, next) => {
-  const {
-    firstname,
-    lastname,
-    pseudo,
-    email,
-    password,
-    age,
-  } = req.body;
+  const { firstname, lastname, pseudo, email, password, age } = req.body;
 
   const userSchema = z.object({
     firstname: z.string().min(2).max(45),
