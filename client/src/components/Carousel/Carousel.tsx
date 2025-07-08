@@ -132,7 +132,6 @@ export default function Carousel({ recipes }: { recipes: RecipesType[] }) {
           </article>
         </section>
         <div className="slider-container">
-          <h1>Les recettes fraîchement ajoutées</h1>
           <Slider {...settings}>
             {recipes.map((r) => (
               <div key={r.id}>

@@ -11,12 +11,13 @@ export default function Home() {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_API_URL}/api/recipes`)
+      .get(`${import.meta.env.VITE_API_URL}/api/latestrecipes`)
       .then((response) => setRecipes(response.data))
       .catch((err) => console.error("Erreur :", err));
   }, []);
   return (
     <>
+      <h2 className="h2Home">Les recettes fraîchement ajoutées</h2>
       <div className="carousel">
         <Carousel recipes={recipes} />
       </div>
