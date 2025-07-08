@@ -10,8 +10,6 @@ const validateUser: RequestHandler = (req, res, next) => {
     email,
     password,
     age,
-    role_id,
-    is_validated,
   } = req.body;
 
   const userSchema = z.object({
@@ -31,8 +29,6 @@ const validateUser: RequestHandler = (req, res, next) => {
         "Le mot de passe doit contenir entre 8 et 16 caractères, incluant une majuscule, une minuscule, un chiffre et un caractère spécial",
       ),
     age: z.number(),
-    role_id: z.number().int().positive(),
-    is_validated: z.boolean(),
   });
 
   const validData: SafeParseReturnType<unknown, UserType> =
@@ -43,8 +39,6 @@ const validateUser: RequestHandler = (req, res, next) => {
       email,
       password,
       age,
-      role_id,
-      is_validated,
     });
 
   if (!validData.success) {
