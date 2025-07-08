@@ -10,10 +10,8 @@ const Navbar = () => {
   const location = useLocation();
   const homePage = location.pathname === "/";
 
-  const navbarChange = homePage? "navbar-all" : "navbar-all-compact";
-  
-  
-  
+  const navbarChange = homePage ? "navbar-all" : "navbar-all-compact";
+
   if (!isConnected) {
     return (
       <div className={navbarChange}>
@@ -30,7 +28,7 @@ const Navbar = () => {
           <nav className="burger-menu" onMouseLeave={() => setOpen(false)}>
             <ul>
               <li>
-                <NavLink  to="/">Accueil</NavLink>
+                <NavLink to="/">Accueil</NavLink>
               </li>
               <li>Les recettes</li>
               <li>A propos</li>
@@ -109,7 +107,11 @@ const Navbar = () => {
               <li>Les recettes</li>
               <li>A propos</li>
               <li>
-                <button className="burger-logout" type="button" onClick={() => logout()}>
+                <button
+                  className="burger-logout"
+                  type="button"
+                  onClick={() => logout()}
+                >
                   Déconnexion
                 </button>
               </li>
