@@ -1,7 +1,7 @@
 import type { FieldPacket, ResultSetHeader } from "mysql2";
 import databaseClient from "../../../database/client";
 import type { Result, Rows } from "../../../database/client";
-import type { UserType } from "../../lib/definitions";
+import type { AdminUpdateUser, UserType } from "../../lib/definitions";
 
 class userRepository {
   async create(user: UserType) {
@@ -54,7 +54,7 @@ class userRepository {
 
   async update(user: UserType) {
     const [result] = await databaseClient.query<Result>(
-      "UPDATE user SET firstname = ?, lastname = ?, pseudo = ?, email = ?, password = ?, age = ?, role_id = ? WHERE id = ?",
+      "UPDATE user SET firstname = ?, lastname = ?, pseudo = ?, email = ?, password = ?, age = ?, role_id = ?, is_validated = ? WHERE id = ?",
       [
         user.firstname,
         user.lastname,
@@ -63,8 +63,17 @@ class userRepository {
         user.password,
         user.age,
         user.role_id,
+        user.is_validated,
         user.id,
       ],
+    );
+    return result.affectedRows;
+  }
+
+  async updateAdmin(user: AdminUpdateUser) {
+    const [result] = await databaseClient.query<Result>(
+      "UPDATE user SET pseudo = ?, role_id = ?, is_validated = ? WHERE id = ?",
+      [user.pseudo, user.role_id, user.is_validated, user.id],
     );
     return result.affectedRows;
   }
