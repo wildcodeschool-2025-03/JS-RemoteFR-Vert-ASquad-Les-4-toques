@@ -8,9 +8,8 @@ const Navbar = () => {
   const { isConnected, logout } = useAuth();
   const [open, setOpen] = useState(false);
   const location = useLocation();
-  const homePage = location.pathname === "/";
-
-  const navbarChange = homePage ? "navbar-all" : "navbar-all-compact";
+  const navbarChange =
+    location.pathname === "/" ? "navbar-all" : "navbar-all-compact";
 
   if (!isConnected) {
     return (
@@ -110,7 +109,7 @@ const Navbar = () => {
                 <button
                   className="burger-logout"
                   type="button"
-                  onClick={() => logout()}
+                  onClick={logout}
                 >
                   Déconnexion
                 </button>
