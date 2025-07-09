@@ -1,3 +1,4 @@
+import axios from "axios";
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router";
@@ -62,9 +63,27 @@ function PrevArrow({ onClick }: ArrowProps) {
 }
 
 export default function Carousel({
-  recipes,
+  categoryId,
   showMainImage = true,
-}: { recipes: RecipesType[]; showMainImage?: boolean }) {
+  last,
+}: { categoryId?: number; showMainImage?: boolean; last?: number }) {
+  const [recipes, setRecipes] = useState<RecipesType[]>([]);
+
+  useEffect(() => {
+    const getRecipes = async () => {
+      const option = categoryId
+        ? `?category=${categoryId}`
+        : last
+          ? `?last=${last}`
+          : "";
+      axios
+        .get(`${import.meta.env.VITE_API_URL}/api/recipes${option}`)
+        .then((response) => setRecipes(response.data))
+        .catch((err) => console.error("Erreur :", err));
+    };
+    getRecipes();
+  }, [categoryId, last]);
+
   const [displayedImgIndex, setdisplayedImgIndex] = useState<number>(1);
 
   const settings = {

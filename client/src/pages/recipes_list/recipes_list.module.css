@@ -1,6 +1,9 @@
 .search_contener {
   display: flex;
   margin: 2rem 0 2rem 15%;
+  @media (max-width: 1200px) {
+    margin: 2rem 0 2rem 5%;
+  }
 }
 
 .search_input {
@@ -23,7 +26,6 @@
   width: 12rem;
   height: 2rem;
   display: flex;
-  margin-left: .8rem;
 }
 
 .vegan,
@@ -44,9 +46,12 @@
   font-size: 1rem;
   font-weight: 600;
   margin: 1em 0 1em 15%;
-  padding: 0 1rem;
+  padding: 0;
   text-align: left;
   font-family: "Now", sans-serif;
+  @media (max-width: 1200px) {
+    margin: 2rem 0 2rem 5%;
+  }
 }
 
 .desktop_displayed_img_container {

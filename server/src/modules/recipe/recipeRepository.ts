@@ -24,23 +24,18 @@ class RecipeRepository {
     return rows as recipeType[];
   }
 
-  async readStarters() {
+  async readAllByCategory(id: number) {
     const [rows] = await databaseClient.query<Rows>(
-      "SELECT id, name, cost, difficulty, nb_people, qte_ingredients, picture, additional_text, is_validated, user_id FROM recipe WHERE category_id=1",
+      "SELECT id, name, cost, difficulty, nb_people, qte_ingredients, picture, additional_text, is_validated, user_id FROM recipe WHERE category_id=?",
+      [id],
     );
     return rows as recipeType[];
   }
 
-  async readMainCourses() {
+  async readByRecentlyAdded(count: number) {
     const [rows] = await databaseClient.query<Rows>(
-      "SELECT id, name, cost, difficulty, nb_people, qte_ingredients, picture, additional_text, is_validated, user_id FROM recipe WHERE category_id=2",
-    );
-    return rows as recipeType[];
-  }
-
-  async readDesserts() {
-    const [rows] = await databaseClient.query<Rows>(
-      "SELECT id, name, cost, difficulty, nb_people, qte_ingredients, picture, additional_text, is_validated, user_id FROM recipe WHERE category_id=3",
+      "SELECT id, name, cost, difficulty, nb_people, qte_ingredients, picture, additional_text FROM recipe ORDER BY id DESC LIMIT ?",
+      [count],
     );
     return rows as recipeType[];
   }
@@ -66,15 +61,7 @@ class RecipeRepository {
       "DELETE FROM recipe WHERE id = ?",
       [id],
     );
-
     return result.affectedRows;
-  }
-
-  async readByRecentlyAdded() {
-    const [rows] = await databaseClient.query<Rows>(
-      "SELECT id, name, cost, difficulty, nb_people, qte_ingredients, picture, additional_text FROM recipe ORDER BY id DESC LIMIT 5",
-    );
-    return rows as recipeType[];
   }
 }
 
