@@ -7,7 +7,7 @@ export type UserType = {
   password: string;
   role_id?: number;
   age: number;
-  is_validated: boolean;
+  is_validated?: boolean;
 };
 
 export type AdminUpdateUser = {
