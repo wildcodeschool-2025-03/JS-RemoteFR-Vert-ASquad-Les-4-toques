@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import { useAuth } from "../../Auth/authContext";
+import { Navigate } from "react-router";
 import "../profil/profil.css";
 
 type FormType = {
@@ -13,7 +14,7 @@ type FormType = {
   email: string;
 };
 
-export default function Update() {
+export default function ProfilUpdate() {
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { account } = useAuth();
@@ -26,11 +27,7 @@ export default function Update() {
   } = useForm<FormType>();
 
   useEffect(() => {
-    if (!account?.id) {
-      alert("Utilisateur non identifié.");
-      navigate("/connexion");
-      return;
-    }
+    if (!account?.id) return;
 
     const fetchUser = async () => {
       try {
@@ -46,7 +43,7 @@ export default function Update() {
     };
 
     fetchUser();
-  }, [account, reset, navigate]);
+  }, [account, reset]);
 
   const onSubmit = async (data: FormType) => {
     if (!account?.id) {
@@ -70,10 +67,11 @@ export default function Update() {
       setIsSubmitting(false);
     }
   };
-
   if (!account?.id) {
-    return <p>Chargement du profil...</p>;
+    alert("Utilisateur non identifié.");
+    return <Navigate to="/" replace />;
   }
+
 
   return (
     <div className="formulaire_container">
