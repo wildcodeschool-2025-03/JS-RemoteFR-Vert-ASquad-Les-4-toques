@@ -43,6 +43,7 @@ import {
 } from "./middlewares/checkEmail.middleware";
 import userActions from "./modules/user/userActions";
 import validateUser from "./validation/userValidation";
+import validateUserUpdate from "./validation/userValidationUser";
 
 router.post("/api/login", checkEmailAndStoreUserData, login);
 
@@ -55,7 +56,7 @@ router.post(
 );
 router.get("/api/users", userActions.browse);
 router.get("/api/users/:id", userActions.read);
-router.put("/api/users/:id", validateUser, hashPassword, userActions.edit);
+router.put("/api/users/:id", validateUserUpdate, userActions.edit);
 router.put("/api/admin/users/:id", userActions.editAdmin);
 router.delete("/api/users/:id", userActions.destroy);
 
