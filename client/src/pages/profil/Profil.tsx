@@ -2,8 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
-import { useAuth } from "../../Auth/authContext";
 import { Navigate } from "react-router";
+import { useAuth } from "../../Auth/authContext";
 import "../profil/profil.css";
 
 type FormType = {
@@ -71,7 +71,6 @@ export default function ProfilUpdate() {
     alert("Utilisateur non identifié.");
     return <Navigate to="/" replace />;
   }
-
 
   return (
     <div className="formulaire_container">
