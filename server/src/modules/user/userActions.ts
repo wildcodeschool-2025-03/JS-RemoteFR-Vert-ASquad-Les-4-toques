@@ -30,7 +30,7 @@ const edit: RequestHandler = async (req, res, next) => {
     const currentUser = await userRepository.read(userId);
     if (!currentUser) {
       res.sendStatus(404);
-      return;  
+      return;
     }
 
     const updatedUser: UserType = {
@@ -54,8 +54,6 @@ const edit: RequestHandler = async (req, res, next) => {
     next(error);
   }
 };
-
-
 
 const editAdmin: RequestHandler = async (req, res, next) => {
   try {

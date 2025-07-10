@@ -1,5 +1,5 @@
 import type { RequestHandler } from "express";
-import { z, type SafeParseReturnType } from "zod";
+import { type SafeParseReturnType, z } from "zod";
 import type { UserType } from "../lib/definitions";
 
 const validateUserUpdate: RequestHandler = (req, res, next) => {
@@ -23,7 +23,7 @@ const validateUserUpdate: RequestHandler = (req, res, next) => {
         "Email invalide",
       )
       .optional(),
-     age: z.number().int().min(0).optional(),
+    age: z.number().int().min(0).optional(),
   });
 
   const validData: SafeParseReturnType<

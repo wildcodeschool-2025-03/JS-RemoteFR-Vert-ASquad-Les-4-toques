@@ -4,8 +4,21 @@ import RecipeRepository from "./recipeRepository";
 
 const browse: RequestHandler = async (req, res, next) => {
   try {
-    const recipes = await RecipeRepository.readAll();
-    res.json(recipes);
+    if (req.query.category) {
+      const recipesByCategory = await RecipeRepository.readAllByCategory(
+        +req.query.category,
+      );
+      res.status(200).json(recipesByCategory);
+    }
+    if (req.query.last) {
+      const latestRecipes = await RecipeRepository.readByRecentlyAdded(
+        +req.query.last,
+      );
+      res.status(200).json(latestRecipes);
+    } else {
+      const recipes = await RecipeRepository.readAll();
+      res.json(recipes);
+    }
   } catch (err) {
     next(err);
   }
@@ -21,15 +34,6 @@ const read: RequestHandler = async (req, res, next) => {
     } else {
       res.json(recipe);
     }
-  } catch (err) {
-    next(err);
-  }
-};
-
-const readByLatest: RequestHandler = async (req, res, next) => {
-  try {
-    const latestRecipes = await RecipeRepository.readByRecentlyAdded();
-    res.json(latestRecipes);
   } catch (err) {
     next(err);
   }
@@ -67,4 +71,9 @@ const destroy: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browse, read, editAdmin, readByLatest, destroy };
+export default {
+  browse,
+  read,
+  editAdmin,
+  destroy,
+};
