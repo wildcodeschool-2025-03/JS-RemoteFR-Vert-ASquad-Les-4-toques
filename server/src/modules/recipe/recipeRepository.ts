@@ -24,6 +24,22 @@ class RecipeRepository {
     return rows as recipeType[];
   }
 
+  async readAllByCategory(id: number) {
+    const [rows] = await databaseClient.query<Rows>(
+      "SELECT id, name, cost, difficulty, nb_people, qte_ingredients, picture, additional_text, is_validated, user_id FROM recipe WHERE category_id=?",
+      [id],
+    );
+    return rows as recipeType[];
+  }
+
+  async readByRecentlyAdded(count: number) {
+    const [rows] = await databaseClient.query<Rows>(
+      "SELECT id, name, cost, difficulty, nb_people, qte_ingredients, picture, additional_text FROM recipe ORDER BY id DESC LIMIT ?",
+      [count],
+    );
+    return rows as recipeType[];
+  }
+
   async read(id: number) {
     const [rows] = await databaseClient.query<Rows>(
       "SELECT id, name, cost, difficulty, nb_people, qte_ingredients, picture, additional_text, is_validated FROM recipe WHERE recipe.id=? ",
@@ -45,15 +61,7 @@ class RecipeRepository {
       "DELETE FROM recipe WHERE id = ?",
       [id],
     );
-
     return result.affectedRows;
-  }
-
-  async readByRecentlyAdded() {
-    const [rows] = await databaseClient.query<Rows>(
-      "SELECT id, name, cost, difficulty, nb_people, qte_ingredients, picture, additional_text FROM recipe ORDER BY id DESC LIMIT 5",
-    );
-    return rows as recipeType[];
   }
 }
 
