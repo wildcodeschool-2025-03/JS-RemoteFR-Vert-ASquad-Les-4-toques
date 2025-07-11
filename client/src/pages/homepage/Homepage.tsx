@@ -26,6 +26,7 @@ export default function Home() {
           <img src="/images/profil.svg" alt="logo profil" />
           <p>Inscris-toi</p>
         </div>
+
         <div className="step-item">
           <img src="/images/plus.svg" alt="logo plus" />
           <p>Ajoute ta recette</p>
